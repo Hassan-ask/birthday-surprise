@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 /* ═══════════════════════════════════════════════════════════════
    GLOBAL STYLES — cinematic dark velvet 3D
@@ -79,7 +79,7 @@ function GlobalStyle() {
       /* ── 3D Orbs ── */
       .orb {
         position: fixed; border-radius: 50%;
-        filter: blur(55px); pointer-events: none; z-index: 0;
+        filter: blur(30px); pointer-events: none; z-index: 0;
         animation: orbFloat 14s ease-in-out infinite;
         will-change: transform;
       }
@@ -139,12 +139,12 @@ function GlobalStyle() {
         background: linear-gradient(145deg, rgba(255,240,210,0.085), rgba(255,240,210,0.038));
         border: 1px solid var(--border);
         box-shadow:
-          0 30px 100px rgba(0,0,0,0.65),
-          0 8px 30px rgba(0,0,0,0.4),
+          0 18px 55px rgba(0,0,0,0.55),
+          0 6px 20px rgba(0,0,0,0.35),
           inset 0 1px 0 rgba(255,255,255,0.10),
           inset 0 -1px 0 rgba(0,0,0,0.3);
-        backdrop-filter: blur(18px) saturate(150%);
-        -webkit-backdrop-filter: blur(18px) saturate(150%);
+        backdrop-filter: blur(8px) saturate(120%);
+        -webkit-backdrop-filter: blur(8px) saturate(120%);
         transform-style: preserve-3d;
         will-change: transform;
       }
@@ -198,14 +198,14 @@ function GlobalStyle() {
         background-size: 250% auto;
         -webkit-background-clip: text; background-clip: text;
         -webkit-text-fill-color: transparent;
-        animation: goldShine 5s linear infinite;
+        animation: goldShine 9s linear infinite;
       }
       .rose-shine {
         background: linear-gradient(92deg, #6b1028 0%, #d4536b 25%, #f07090 45%, #d4536b 65%, #6b1028 100%);
         background-size: 250% auto;
         -webkit-background-clip: text; background-clip: text;
         -webkit-text-fill-color: transparent;
-        animation: goldShine 4.5s linear infinite;
+        animation: goldShine 8s linear infinite;
       }
       @keyframes goldShine { to { background-position: 250% center; } }
 
@@ -317,16 +317,13 @@ function GlobalStyle() {
         background: rgba(8,4,15,0.80);
         border: 1px solid var(--border);
         box-shadow: 0 16px 55px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.07);
-        backdrop-filter: blur(20px) saturate(160%);
-        -webkit-backdrop-filter: blur(20px) saturate(160%);
+        backdrop-filter: blur(10px) saturate(125%);
+        -webkit-backdrop-filter: blur(10px) saturate(125%);
       }
       .progress-bar-track {
         height:4px; border-radius:99px; background:rgba(255,240,210,0.08); overflow:hidden; margin-top:11px;
       }
 
-      /* ── Range ── */
-      input[type=range] { -webkit-appearance:none; width:100%; height:6px; border-radius:99px; background:rgba(255,240,210,0.12); outline:none; cursor:pointer; }
-      input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:22px; height:22px; border-radius:50%; background:radial-gradient(circle at 35% 30%, #fff, var(--gold2) 42%, var(--rose)); box-shadow:0 0 0 6px rgba(201,168,76,0.15), 0 8px 22px rgba(0,0,0,0.35); }
 
       /* ── Heart Game ── */
       .heart-btn { position:absolute; transform:translate(-50%,-50%); border:0; background:transparent; cursor:pointer; font-size:clamp(1.6rem,3.5vw,2.6rem); filter:drop-shadow(0 8px 18px rgba(212,83,107,0.45)); transition:transform .12s; }
@@ -360,18 +357,6 @@ function GlobalStyle() {
       /* ── Emoji Rain ── */
       .rain-wrap { position:fixed; inset:0; z-index:999; pointer-events:none; overflow:hidden; }
 
-      /* ── Voice Player ── */
-      .voice-panel {
-        border-radius:28px; padding:2.4rem 2rem;
-        background: linear-gradient(145deg, rgba(61,8,23,0.75) 0%, rgba(107,16,40,0.45) 50%, rgba(20,4,10,0.85) 100%);
-        border: 1px solid rgba(212,83,107,0.22);
-        box-shadow: 0 24px 70px rgba(0,0,0,0.55), 0 0 60px rgba(107,16,40,0.20);
-        position:relative; overflow:hidden;
-      }
-
-      /* ── Waveform ── */
-      .wavebar { border-radius:99px; transition:background .3s; }
-
       /* ── Hidden Button ── */
       .hidden-btn-wrap { position:fixed; left:16px; bottom:16px; z-index:200; }
 
@@ -386,6 +371,19 @@ function GlobalStyle() {
       .grid-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; }
       .grid-promises { display:grid; gap:11px; max-width:760px; margin:0 auto; }
 
+
+      /* ── Performance tune: smoother on mobile/low-end devices ── */
+      .cin-bg::before, .grain { opacity:0.018; }
+      .orb { filter: blur(30px); opacity:.75; }
+      .card, .mini-card, .progress-head { will-change: auto; }
+      .heart-btn { will-change: transform; }
+
+      @media(max-width:760px) {
+        .orb { display:none; }
+        .dust-wrap, .grain { display:none; }
+        .card { backdrop-filter:none; -webkit-backdrop-filter:none; box-shadow:0 14px 38px rgba(0,0,0,.55); }
+        .mini-card { box-shadow:0 10px 28px rgba(0,0,0,.35); }
+      }
       @media(max-width:660px) {
         .card { padding: 18px; border-radius: 24px; }
         .sil-moon { width:44px; height:44px; top:14px; right:16px; }
@@ -406,77 +404,100 @@ const CONFIG = {
   password: "future",
   passwordHint: "hamara rishta kis taraf ja raha hai 🙈",
   musicUrl: "/music/romantic.mp3",
-  voiceNoteUrl: "/audio/voice-message.mp3",
   personalLines: [
-    "Abhi hum saath nahi hain, lekin apse baat karte karte mujhe ye zaroor feel hota hai ke Allah ne kuch log dil ko sukoon dene ke liye banaye hote hain — aur ap unhi logon me se hain. ❤️",
-    "Apse baat hoti hai to din thoda halka, mood thoda acha, aur smile thodi zyada real ho jaati hai. Ye normal chat nahi lagti — ye meri favorite notification ban chuki hai. 😄",
-    "Main future ka claim nahi karta, lekin dua zaroor karta hoon: agar Allah ne behtari rakhi ho, to agla birthday main apko aur bhi zyada haq se wish karun. Ameen. 🤍",
+    "Fariha, ye surprise sirf birthday wish nahi — meri taraf se ek chhota sa ehsaas hai ke aap meri nazar me kitni qeemti, graceful aur dil ke qareeb hain. ❤️",
+    "Aapse baat hoti hai to din ka normal sa moment bhi special feel hota hai. Aapka simple ‘G’, aapki soft vibe, aapka trust aur aapki smile — ye sab dil ko quietly attract kar leta hai. 🤍",
+    "Main perfect nahi hoon, lekin meri niyat sincere hai: agar Allah ne hume saath likha, to main aapko izzat, care, loyalty, sukoon aur thori si cute dramebazi ke saath khush rakhne ki koshish karunga. ✨",
   ],
   futureWifeFeatures: [
-    { emoji:"😄", label:"Smile", title:"Dangerous Smile", desc:"Apki smile ka issue ye hai ke banda normal rehna chahta hai, lekin dil khud hi impressed ho jaata hai. Is smile par fine lagna chahiye." },
-    { emoji:"🧠", label:"Mind", title:"Smart & Sweet", desc:"Apki baaton me samajh bhi hoti hai aur softness bhi. Rare combo: dil bhi jeet leti hain aur argument bhi respectfully win kar leti hain." },
-    { emoji:"🌹", label:"Beauty", title:"Gracefully Beautiful", desc:"Ap beautiful hain, lekin sirf face se nahi — apki baat karne ka tareeqa, apki haya, apki vibe… sab kuch elegant lagta hai." },
-    { emoji:"🤌", label:"Future", title:"Future Wife Energy", desc:"Apki simplicity, care aur vibe dekh kar dil kehta hai: ye insan life me ho to life better ho sakti hai. 🤍" },
+    { emoji:"😊", label:"Smile", title:"Smile Jo Dil Ka Scene Change Kar De", desc:"Aapki smile me wo softness hai jo normal baat ko bhi special bana deti hai. Banda sochta hai bas smile dekhi hai, lekin dil quietly bolta hai: Hassan bhai, ye to dangerous level cute hai." },
+    { emoji:"🌸", label:"Grace", title:"Haya + Class = Fariha", desc:"Aap loud nahi hotin, lekin aapki presence bohot beautifully feel hoti hai. Aapki haya, respectful tone aur simple nature woh cheez hai jo dil me shor ke bina jagah bana leti hai." },
+    { emoji:"🔐", label:"Trust", title:"Trust Jo Dil Se Sambhalna Hai", desc:"Aapne jo trust diya, wo mere liye sirf ek baat nahi — amanat hai. Aapki privacy, izzat aur comfort ko protect karna mere liye romance se bhi pehle aata hai." },
+    { emoji:"💬", label:"Connection", title:"Baat Jo Naturally Flow Hoti Hai", desc:"Aap kehti hain ke har kisi se itni baat nahi kartin. Sach kahun to main bhi har kisi ke sath itna open nahi hota. Shayad isi liye hamari baat me forced feeling nahi, bas natural comfort hai." },
+    { emoji:"🏡", label:"Future", title:"Future Wife Wali Peaceful Vibe", desc:"Aap me wo vibe hai jisse future fancy nahi, peaceful imagine hota hai — respect, sukoon, families ki dua, thori nok-jhok, aur menu me biryani ke sath meri fish fry ki request bhi." },
+    { emoji:"💎", label:"Value", title:"Qeemti Insan, Sirf Pasand Nahi", desc:"Aap mere liye sirf pretty face ya cute chat nahi hain. Aapki feelings, boundaries, smile aur sukoon matter karta hai — aur yehi baat aapko meri nazar me bohot qeemti banati hai." },
   ],
   whySpecial: [
-    { emoji:"💫", title:"Apki Baaten", text:"Apki baaton me ajeeb sa sukoon hai. Simple si baat bhi dil ko itni achi lagti hai ke reply dene se pehle smile aa jaati hai." },
-    { emoji:"🌸", title:"Apki Vibe", text:"Apki vibe soft, respectful aur classy hai. Aisi vibe har kisi me nahi hoti — aur isi liye ap special lagti hain." },
-    { emoji:"💗", title:"Apki Simplicity", text:"Apki simplicity bohot pasand hai. Jis tarah ap naturally baat karti hain, usme koi fake cheez feel nahi hoti." },
-    { emoji:"✨", title:"Apka Asar", text:"Ap meri life me officially nahi aayi abhi, lekin apki baaton ka asar already acha hai. Ye main casually nahi keh raha." },
+    { emoji:"💫", title:"Aapka Asar", text:"Kuch log life me excitement se zyada sukoon ban kar aate hain. Aapki baat, aapka tareeqa aur aapka ‘G’ bhi kabhi kabhi dil ko calm kar deta hai." },
+    { emoji:"❤️", title:"Dil Ko Comfortable Lagti Hain", text:"Aap se baat karte hue awkwardness nahi hoti; ek comfort feel hota hai. Jaise dil ko pata ho ke yahan izzat bhi hai, care bhi hai aur halka sa cute mazak bhi." },
+    { emoji:"🌙", title:"Time Ka Pata Nahi Chalta", text:"Aapse baat karte karte waqt ka pata hi nahi chalta. Ye normal chat nahi lagti — jaise din ka best part quietly phone screen par aa gaya ho." },
+    { emoji:"🤍", title:"Respect Wali Mohabbat", text:"Aapne trust aur respect ki value samjhi hai, aur mujhe ye baat bohot pasand hai. Mere liye bhi khoobsurat rishta wahi hota hai jahan mohabbat se pehle izzat ho." },
+    { emoji:"🌷", title:"Aapki Softness", text:"Aapki soft nature me ek alag attraction hai. Aap zyada show off nahi kartin, lekin jo sincerity aapki baaton me hoti hai, wo seedha dil tak pohanchti hai." },
+    { emoji:"😄", title:"Cute Funny Side", text:"Kabhi aap doctor sahiba ban kar chai/coffee par lecture deti hain, kabhi itni innocent baat kar deti hain ke smile aa jati hai. Ye serious + funny combo hi to dangerous hai." },
   ],
   promises: [
-    { icon:"🛡️", text:"Main apki izzat hamesha karunga — abhi bhi, future me bhi. Respect mere liye romance se pehle aati hai." },
-    { icon:"🕊️", text:"Main apko kabhi pressure feel nahi karwana chahta. Jo bhi ho, Allah ki raza aur dono families ki khushi ke saath ho." },
-    { icon:"🌟", text:"Agar Allah ne hume saath likha, to apka sukoon, smile aur respect protect karne ki poori koshish karunga." },
-    { icon:"💎", text:"Main apki baaton ko lightly nahi leta. Ap important hain — aur main chahta hoon ke ap hamesha valued feel karen." },
-    { icon:"♾️", text:"Abhi hum sirf baat karte hain, lekin meri niyat simple hai: agar future bana, to izzat, care aur loyalty ke saath bana." },
+    { icon:"🛡️", text:"Main aapki izzat, haya aur privacy ka hamesha khayal rakhunga. Aapka trust mere paas amanat hai — aur amanat ko dil se sambhala jata hai." },
+    { icon:"🕊️", text:"Main aapko kabhi pressure feel nahi karwana chahta. Har step Allah ki raza, dono families ki khushi aur aapki comfort ke saath ho." },
+    { icon:"🤍", text:"Agar meri koi baat kabhi buri lage, aap mujhe bata sakti hain. Main ego nahi, understanding choose karna chahta hoon." },
+    { icon:"💌", text:"Main aapko sirf special days par nahi, normal routine me bhi valued feel karwana chahta hoon — kyunki real care daily choti choti baaton me hoti hai." },
+    { icon:"🌍", text:"InshaAllah future me jahan bhi le kar jaun, meri priority ye hogi ke aap safe, happy, respected aur genuinely loved feel karen." },
+    { icon:"😄", text:"Aur haan, agar kabhi mood off ho to pehle smile lane ki koshish karunga. Agar phir bhi na hui to biryani, pasta ya fish fry ka emergency plan ready rahega." },
   ],
-  loveMeterMessages: [
-    "Itna kam? Ye meter bhi keh raha hai: Hassan bhai, sach bolo 😄",
-    "Ab thoda dil wali side active ho rahi hai… lekin abhi bhi kam hai ❤️",
-    "Yahan se baat cute se serious zone me enter kar rahi hai 😌",
-    "100%! Meter bhi maan gaya: Fariha special hain. Officially. Respectfully. 💖",
+  birthdayPresents: [
+    { emoji:"🤲", title:"Dua Ka Present", text:"Allah aapko hamesha sehat, hifazat, sukoon, izzat aur wo khushiyan de jo aap dil me chup chap chahti hain. Ameen." },
+    { emoji:"🌹", title:"Respect Ka Present", text:"Aapki izzat meri priority rahegi — aaj bhi, kal bhi, aur inshaAllah hamesha. Ye gift kabhi expire nahi hoga." },
+    { emoji:"🔐", title:"Trust Ka Present", text:"Jo baat hum dono ke darmiyan ho, wo hum dono tak hi rahe. Aapka trust mere liye sab se special responsibility hai." },
+    { emoji:"💌", title:"Time Ka Present", text:"Busy routine ke bawajood aapke liye waqt nikalna mere liye duty nahi, dil ki khushi hogi." },
+    { emoji:"🌙", title:"Sukoon Ka Present", text:"Meri koshish ye rahegi ke aap mere saath kabhi unsafe, ignored ya unvalued feel na karen — sirf sukoon, respect aur care feel ho." },
+    { emoji:"🍝", title:"Cute Deal Present", text:"Aap pasta, main fish fry, dono biryani par agree. Chai/coffee par aapki doctor sahiba wali warning bhi maan lenge… lekin kabhi kabhi." },
+  ],
+  heartGameSecrets: [
+    { label:"Smile", text:"Aapki smile meri favorite silent notification hai." },
+    { label:"Trust", text:"Aapka trust mere liye amanat hai." },
+    { label:"Sukoon", text:"Aapki baaton me ek peaceful comfort hai." },
+    { label:"Future", text:"Aapke saath future ka khayal soft aur beautiful lagta hai." },
+    { label:"Dua", text:"Allah hume behtareen faislay aur asaniyan de. Ameen." },
   ],
   letter: `Pyaari Fariha,
 
-Happy Birthday ❤️
+Happy 20th Birthday ❤️
 
-Aaj apka birthday hai, aur main bas ye kehna chahta hoon ke Allah apki zindagi ko khushiyon, sukoon, sehat aur kamyabi se bhar de. Ap jahan bhi rahen, jis haal me bhi rahen, Allah apko hamesha apni hifazat me rakhe. Ameen.
+Aaj ka din mere liye sirf calendar ki ek date nahi hai. Aaj us insan ka birthday hai jisse baat karte karte mujhe ye feel hua ke kuch log dil ko impress nahi, dil ko sukoon dene ke liye aate hain. Aap unhi logon me se hain.
 
-Main jaanta hoon ke abhi hum us stage par nahi hain jahan main bohot bade claims karun. Abhi bas baat hoti hai — lekin kabhi kabhi kuch logon se baat karte karte insan ko feel hota hai ke ye insan different hai. Ap mere liye waisi hi hain.
+Fariha, main chahta hoon ke ye wish aap sirf read na karen — feel bhi karen. Aapki simplicity, aapki haya, aapka respectful tareeqa, aapka soft sa nature aur aapki smile… ye sab mil kar aapko meri nazar me bohot different banata hai. Aap loud nahi hotin, lekin aapki presence dil me bohot quietly jagah bana leti hai.
 
-Apki simplicity, apka baat karne ka tareeqa, apki respect aur apki soft si vibe — ye sab genuinely bohot acha lagta hai. Aur haan, apki smile ka to alag hi issue hai. Wo banda normal rehne hi nahi deti. 😄
+Mujhe aapki wo baat bohot special lagti hai ke aap har kisi se itni baat nahi kartin. Shayad isi liye jab aap mujhse naturally baat karti hain, jab aap apni choti choti baatein share karti hain, jab aap simple sa ‘G’ bolti hain, to wo mere liye normal reply nahi rehta — wo ek sweet si feeling ban jata hai.
 
-Main future ka guarantee nahi de sakta, kyunki future Allah ke haath me hai. Lekin dua zaroor karta hoon ke agar hum dono ke liye behtari isi me ho, to Allah hume izzat, mohabbat aur families ki khushi ke saath saath kar de.
+Aapne trust ki baat ki thi, privacy ki baat ki thi, aur mujhe wo baat dil se lagi. Main chahta hoon ke aap mere saath hamesha safe, respected aur valued feel karen. Jo baat hum dono ke darmiyan ho, wo hum dono tak hi rahe. Aapki izzat aur aapka comfort mere liye sirf words nahi, zimmedari hai.
 
-Agle saal, agar Allah ne chaha, to shayad main ye birthday wish aur zyada haq se kar raha hoon.
+Mere liye mohabbat ka matlab sirf pyari pyari lines nahi. Mohabbat ka matlab hai kisi ki baat sunna, uski feelings ko samajhna, uski boundaries ka khayal rakhna, uski family ki respect karna, aur uski smile ko protect karna. Agar Allah ne hume saath likha, to main isi tarah aapka saath nibhana chahta hoon — izzat ke saath, loyalty ke saath, aur bohot care ke saath.
 
-Ap special hain, Fariha. Aur ye baat main sirf impress karne ke liye nahi keh raha — dil se keh raha hoon.
+Aur haan, itna serious letter dekh kar ye mat sochna ke Hassan serious mode me permanently shift ho gaya. Aapki smile ka case abhi bhi pending hai, kyunki wo banda normal rehne hi nahi deti. Aur future me agar menu decide hua, to biryani aapki, pasta aapka, lekin fish fry ki ek choti si seat meri taraf se reserved rahegi. Chai/coffee par aapka doctor sahiba wala lecture bhi sun lenge — bas zyada strict mat hona.
 
-With respect, care, aur thori si cute si dramebazi,
+Fariha, main koi filmy guarantee nahi de sakta, kyunki future Allah ke haath me hai. Lekin meri niyat simple aur sincere hai. Main chahta hoon ke aapko mere saath kabhi ye feel na ho ke aapki value kam hai. Aapki khushi, aapka sukoon, aapki smile aur aapka trust mere liye genuinely matter karta hai.
+
+Is birthday par meri dua hai ke Allah aapke dil ko hamesha halka rakhe, aapki zindagi me asaniyan rakhe, aapko har buri nazar se mehfooz rakhe, aur aapko wo khushiyan de jo aap deserve karti hain. Aapki muskurahat hamesha real rahe, aapki aankhon me hamesha roshni rahe, aur aapka dil hamesha sukoon me rahe.
+
+Agar Allah ne behtari rakhi, to agle birthdays me main aapko aur zyada haq, aur zyada izzat, aur aur zyada mohabbat ke saath wish karunga. Aur inshaAllah ek din aapki birthday sirf wish nahi hogi — meri responsibility, meri dua aur meri khushi hogi.
+
+Happy Birthday, Fariha. Aap bohot qeemti hain. Aap dil ke bohot qareeb hain. Aur ye baat main sirf impress karne ke liye nahi, dil se keh raha hoon.
+
+With respect, care, dua, aur thori si cute dramebazi,
 Mohammad Hassan 💌`,
-  hiddenSecret: "Sach bataun? Apse baat karna meri favorite daily habit ban chuki hai ❤️",
-  finalMessage: `Happy Birthday, Fariha ❤️\nAaj dua hai, agle saal inshaAllah aur zyada haq se wish karunga 😌`,
+  hiddenSecret: "Sach bataun? Aapka simple ‘G’ bhi kabhi kabhi dil ka favorite notification lagta hai ❤️",
+  finalMessage: `Happy 20th Birthday, Fariha ❤️
+Aapki smile hamesha real rahe, aapka dil hamesha sukoon me rahe.
+Dua hai ke agle birthdays me main aapko aur zyada haq, izzat aur mohabbat ke saath wish karun. Ameen 🤍`,
 };
 
-const STEPS = ["Welcome","Features","Special","Voice","Game","Meter","Promises","Letter","Finale"];
+const STEPS = ["Welcome","Qualities","Special","Game","Promises","Presents","Letter","Finale"];
 
 /* ═══════════════════════════════════════════════════════════════
    ANIMATION VARIANTS
 ═══════════════════════════════════════════════════════════════ */
 const pageVar = {
-  hidden: { opacity:0, y:30, filter:"blur(10px)" },
-  show:   { opacity:1, y:0, filter:"blur(0px)", transition:{ duration:.55, ease:[.22,1,.36,1] } },
-  exit:   { opacity:0, y:-20, filter:"blur(8px)", transition:{ duration:.26 } },
+  hidden: { opacity:0, y:22 },
+  show:   { opacity:1, y:0, transition:{ duration:.42, ease:[.22,1,.36,1] } },
+  exit:   { opacity:0, y:-14, transition:{ duration:.2 } },
 };
-const staggerVar = { hidden:{}, show:{ transition:{ staggerChildren:.08 } } };
-const fadeUpVar  = { hidden:{ opacity:0, y:22 }, show:{ opacity:1, y:0, transition:{ duration:.5, ease:[.22,1,.36,1] } } };
+const staggerVar = { hidden:{}, show:{ transition:{ staggerChildren:.045 } } };
+const fadeUpVar  = { hidden:{ opacity:0, y:18 }, show:{ opacity:1, y:0, transition:{ duration:.38, ease:[.22,1,.36,1] } } };
 
 /* ═══════════════════════════════════════════════════════════════
    BACKGROUND
 ═══════════════════════════════════════════════════════════════ */
 function CinBG() {
-  const dust = useMemo(() => Array.from({length:28},(_,i)=>({
+  const dust = useMemo(() => Array.from({length:12},(_,i)=>({
     id:i,
     left:`${Math.random()*100}%`,
     bottom:`-${5+Math.random()*10}%`,
@@ -507,7 +528,7 @@ function CinBG() {
 /* ═══════════════════════════════════════════════════════════════
    EMOJI RAIN + CONFETTI
 ═══════════════════════════════════════════════════════════════ */
-function EmojiRain({active, emojis=["❤️","💖","✨"], count=28}) {
+function EmojiRain({active, emojis=["❤️","💖","✨"], count=14}) {
   if(!active) return null;
   return (
     <div className="rain-wrap">
@@ -526,7 +547,7 @@ function Confetti({active}) {
   if(!active) return null;
   return (
     <div className="confetti-wrap">
-      {Array.from({length:85}).map((_,i)=>(
+      {Array.from({length:34}).map((_,i)=>(
         <motion.div key={i} style={{position:"absolute", fontSize:"clamp(.8rem,2.2vw,1.6rem)"}}
           initial={{y:-70, x:`${(i*31)%100}vw`, opacity:1, rotate:0, scale:.6}}
           animate={{y:"112vh", rotate:540+(i%7)*70, opacity:[1,1,.7,0], scale:[.6,1.2,1]}}
@@ -542,25 +563,11 @@ function Confetti({active}) {
    3D TILT CARD
 ═══════════════════════════════════════════════════════════════ */
 function TiltCard({children, style={}, className=""}) {
-  const ref = useRef(null);
-  const rx = useMotionValue(0);
-  const ry = useMotionValue(0);
-  const srx = useSpring(rx,{stiffness:220,damping:32});
-  const sry = useSpring(ry,{stiffness:220,damping:32});
-
-  const onMove = e => {
-    if(!ref.current) return;
-    const r = ref.current.getBoundingClientRect();
-    const px = (e.clientX - r.left) / r.width  - .5;
-    const py = (e.clientY - r.top)  / r.height - .5;
-    rx.set(py * -10);
-    ry.set(px *  12);
-  };
-  const onLeave = () => { rx.set(0); ry.set(0); };
-
   return (
-    <motion.div ref={ref} onMouseMove={onMove} onMouseLeave={onLeave}
-      style={{rotateX:srx, rotateY:sry, transformPerspective:900, ...style}}
+    <motion.div
+      style={{transformPerspective:700, ...style}}
+      whileHover={{y:-3, scale:1.008}}
+      transition={{duration:.22, ease:[.22,1,.36,1]}}
       className={`tilt-card ${className}`}>
       {children}
     </motion.div>
@@ -571,51 +578,112 @@ function TiltCard({children, style={}, className=""}) {
    SILHOUETTE
 ═══════════════════════════════════════════════════════════════ */
 function Silhouette({compact=false}) {
-  const stars = useMemo(()=>Array.from({length:compact?30:50},(_,i)=>({
-    id:i, left:`${8+Math.random()*84}%`, top:`${5+Math.random()*54}%`,
-    w:Math.random()*2+.8, delay:`${Math.random()*3}s`, dur:`${1.8+Math.random()*2.4}s`,
+  const stars = useMemo(()=>Array.from({length:compact?12:22},(_,i)=>({
+    id:i,
+    left:`${6+Math.random()*88}%`,
+    top:`${5+Math.random()*56}%`,
+    w:Math.random()*2+.8,
+    delay:`${Math.random()*3}s`,
+    dur:`${1.8+Math.random()*2.4}s`,
   })),[compact]);
+
+  const floating = useMemo(()=>Array.from({length:compact?3:5},(_,i)=>({
+    id:i,
+    left:`${12+Math.random()*76}%`,
+    top:`${18+Math.random()*38}%`,
+    delay:`${Math.random()*2.5}s`,
+    size:`${12+Math.random()*14}px`,
+  })),[compact]);
+
   return (
-    <div className={`silhouette ${compact?"compact":"full"}`}>
+    <div className={`silhouette ${compact?"compact":"full"}`} style={{
+      background:"radial-gradient(circle at 76% 18%, rgba(255,230,150,.20), transparent 24%), radial-gradient(circle at 24% 18%, rgba(240,112,144,.18), transparent 22%), linear-gradient(180deg,#100313 0%,#2b0617 45%,#6b1028 72%,#12040c 100%)",
+      border:"1px solid rgba(255,220,160,.22)",
+      boxShadow:"0 28px 90px rgba(0,0,0,.62), 0 0 70px rgba(212,83,107,.12), inset 0 1px 0 rgba(255,255,255,.10)"
+    }}>
       {stars.map(s=>(
         <span key={s.id} className="sil-star" style={{
           left:s.left, top:s.top, width:s.w, height:s.w,
           animationDelay:s.delay, animationDuration:s.dur,
-          boxShadow:`0 0 ${s.w*4}px rgba(255,248,225,.6)`,
+          boxShadow:`0 0 ${s.w*5}px rgba(255,248,225,.75)`,
         }}/>
       ))}
-      <div className="sil-moon"/>
-      {/* Ground fog */}
-      <div style={{position:"absolute",inset:"auto 0 0",height:80,background:"linear-gradient(0deg,rgba(4,1,10,.85),rgba(4,1,10,.3),transparent)"}}/>
-      {/* Initials */}
-      <div style={{position:"absolute",left:20,top:18,zIndex:2}}>
-        <p className="f-display" style={{color:"rgba(240,230,211,.70)",fontSize:"1.4rem",fontWeight:700,letterSpacing:".22em"}}>H <span style={{color:"var(--rose2)"}}>❤</span> F</p>
-        <p className="f-body" style={{color:"rgba(240,230,211,.32)",fontSize:".62rem",fontWeight:800,letterSpacing:".2em",marginTop:2}}>PRIVATE EDITION</p>
+
+      {floating.map(h=>(
+        <motion.span key={h.id}
+          animate={{y:[0,-14,0],opacity:[.45,1,.55],scale:[.9,1.15,.9]}}
+          transition={{duration:3.2,delay:parseFloat(h.delay),repeat:Infinity,ease:"easeInOut"}}
+          style={{position:"absolute",left:h.left,top:h.top,fontSize:h.size,zIndex:3,filter:"drop-shadow(0 0 10px rgba(240,112,144,.8))"}}>
+          ❤
+        </motion.span>
+      ))}
+
+      <div className="sil-moon" style={{right:compact?18:34,top:compact?16:26,width:compact?48:70,height:compact?48:70}}/>
+      <div style={{position:"absolute",left:18,top:16,zIndex:4,padding:".48rem .7rem",borderRadius:999,
+        background:"rgba(8,4,15,.42)",border:"1px solid rgba(255,220,160,.18)",}}>
+        <p className="f-body" style={{color:"rgba(255,241,194,.86)",fontSize:".62rem",fontWeight:900,letterSpacing:".18em",textTransform:"uppercase"}}>Private Birthday Edition</p>
       </div>
-      {/* SVG couple */}
-      <svg viewBox="0 0 380 240" style={{position:"absolute",bottom:0,left:"50%",transform:"translateX(-50%)",width:compact?"80%":"74%",height:"auto",filter:"drop-shadow(0 16px 22px rgba(0,0,0,.7))"}}>
-        {/* Ground */}
-        <path d="M30 218 C100 196 160 200 190 210 C225 222 280 200 350 218 L350 240 L30 240Z" fill="rgba(4,1,10,.95)"/>
+
+      <svg viewBox="0 0 420 270" style={{position:"absolute",bottom:0,left:"50%",transform:"translateX(-50%)",width:compact?"92%":"86%",height:"auto",zIndex:2,filter:"drop-shadow(0 18px 28px rgba(0,0,0,.75))"}}>
+        <defs>
+          <linearGradient id="dressGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#f07090" stopOpacity=".70"/>
+            <stop offset=".55" stopColor="#6b1028" stopOpacity=".95"/>
+            <stop offset="1" stopColor="#1b0310"/>
+          </linearGradient>
+          <linearGradient id="suitGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#151019"/>
+            <stop offset="1" stopColor="#030108"/>
+          </linearGradient>
+          <radialGradient id="glow" cx="50%" cy="42%" r="60%">
+            <stop offset="0" stopColor="#fff3c7" stopOpacity=".28"/>
+            <stop offset="1" stopColor="#fff3c7" stopOpacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <ellipse cx="210" cy="152" rx="145" ry="86" fill="url(#glow)"/>
+        <path d="M35 241 C95 217 155 222 205 234 C256 247 313 218 386 240 L386 270 L35 270Z" fill="rgba(4,1,10,.96)"/>
+        <path d="M76 226 C145 202 271 202 344 226" stroke="rgba(255,220,160,.18)" strokeWidth="2" fill="none"/>
+
+        {/* floral arch */}
+        <path d="M95 225 C91 126 129 70 199 56 C282 40 337 105 329 224" stroke="rgba(255,220,160,.20)" strokeWidth="5" fill="none" strokeLinecap="round"/>
+        {[0,1,2,3,4,5,6,7].map((_,i)=>(
+          <g key={i} transform={`translate(${104+i*31} ${99 - Math.sin(i)*31})`}>
+            <circle r="6" fill="rgba(240,112,144,.72)"/>
+            <circle cx="6" cy="3" r="4" fill="rgba(232,201,122,.65)"/>
+          </g>
+        ))}
+
         {/* Him */}
-        <ellipse cx="162" cy="86" rx="18" ry="19" fill="#030108"/>
-        <path d="M142 108 Q162 100 182 108 L188 180 L136 180Z" fill="#030108"/>
-        <path d="M140 118 Q115 144 108 176" stroke="#030108" strokeWidth="17" strokeLinecap="round" fill="none"/>
-        {/* tie */}
-        <path d="M162 108 L157 128 L162 124 L167 128Z" fill="rgba(107,16,40,.6)"/>
+        <ellipse cx="180" cy="101" rx="18" ry="20" fill="#030108"/>
+        <path d="M158 125 Q180 114 203 125 L211 203 L148 203Z" fill="url(#suitGrad)"/>
+        <path d="M167 128 L181 152 L195 128" stroke="rgba(255,240,210,.18)" strokeWidth="3" fill="none"/>
+        <path d="M181 126 L175 151 L182 146 L190 151Z" fill="rgba(212,83,107,.75)"/>
+        <path d="M156 139 Q129 164 122 196" stroke="#030108" strokeWidth="16" strokeLinecap="round" fill="none"/>
+
         {/* Her */}
-        <ellipse cx="218" cy="90" rx="16" ry="17" fill="#030108"/>
-        {/* hair */}
-        <path d="M202 86 Q218 72 234 86 Q230 74 218 71 Q206 74 202 86Z" fill="#030108"/>
-        {/* dress */}
-        <path d="M200 110 Q218 168 238 110 Q228 190 196 190Z" fill="#030108"/>
-        <path d="M230 120 Q254 145 260 174" stroke="#030108" strokeWidth="16" strokeLinecap="round" fill="none"/>
+        <ellipse cx="235" cy="104" rx="17" ry="19" fill="#030108"/>
+        <path d="M218 101 Q235 78 255 101 Q251 83 236 78 Q222 82 218 101Z" fill="#030108"/>
+        <path d="M213 128 Q236 114 258 128 Q250 176 268 212 Q235 224 202 212 Q219 176 213 128Z" fill="url(#dressGrad)"/>
+        <path d="M255 140 Q286 162 292 196" stroke="#030108" strokeWidth="15" strokeLinecap="round" fill="none"/>
+
         {/* Joined hands */}
-        <path d="M182 148 Q200 136 214 148" stroke="#030108" strokeWidth="14" strokeLinecap="round" fill="none"/>
-        {/* Floating heart */}
-        <text x="190" y="60" textAnchor="middle" fontSize="20" fill="rgba(212,83,107,.92)" style={{filter:"drop-shadow(0 0 8px rgba(212,83,107,.7))"}}>❤</text>
-        <text x="212" y="44" textAnchor="middle" fontSize="12" fill="rgba(201,168,76,.75)">✦</text>
-        <text x="170" y="50" textAnchor="middle" fontSize="9"  fill="rgba(240,112,144,.55)">✦</text>
+        <path d="M203 160 Q220 148 236 160" stroke="#030108" strokeWidth="13" strokeLinecap="round" fill="none"/>
+        <circle cx="219" cy="155" r="5" fill="rgba(232,201,122,.75)"/>
+
+        {/* Gift + roses */}
+        <rect x="302" y="206" width="34" height="26" rx="4" fill="rgba(212,83,107,.78)"/>
+        <path d="M319 206 L319 232 M302 218 L336 218" stroke="rgba(255,241,194,.82)" strokeWidth="3"/>
+        <path d="M310 204 C305 194 317 194 319 205 C322 194 334 195 328 204" fill="rgba(255,241,194,.72)"/>
+        <text x="210" y="67" textAnchor="middle" fontSize="24" fill="rgba(240,112,144,.92)" style={{filter:"drop-shadow(0 0 10px rgba(240,112,144,.8))"}}>❤</text>
+        <text x="240" y="51" textAnchor="middle" fontSize="13" fill="rgba(255,241,194,.75)">✦</text>
+        <text x="168" y="59" textAnchor="middle" fontSize="11" fill="rgba(255,241,194,.55)">✦</text>
       </svg>
+
+      <div style={{position:"absolute",inset:"auto 0 0",height:110,background:"linear-gradient(0deg,rgba(4,1,10,.92),rgba(4,1,10,.35),transparent)",zIndex:1}}/>
+      {!compact&&<div style={{position:"absolute",left:22,right:22,bottom:18,zIndex:4,textAlign:"center"}}>
+        <p className="f-script" style={{color:"rgba(255,241,194,.86)",fontSize:"1.2rem",lineHeight:1.35}}>A wish wrapped in respect, care and a little romance</p>
+      </div>}
     </div>
   );
 }
@@ -623,12 +691,12 @@ function Silhouette({compact=false}) {
 /* ═══════════════════════════════════════════════════════════════
    TYPEWRITER
 ═══════════════════════════════════════════════════════════════ */
-function Typewriter({lines, speed=20}) {
+function Typewriter({lines, speed=28}) {
   const full = useMemo(()=>lines.join("\n\n"),[lines]);
   const [txt,setTxt] = useState("");
   useEffect(()=>{
     let i=0; setTxt("");
-    const t=setInterval(()=>{ setTxt(full.slice(0,++i)); if(i>=full.length) clearInterval(t); },speed);
+    const t=setInterval(()=>{ i=Math.min(full.length,i+3); setTxt(full.slice(0,i)); if(i>=full.length) clearInterval(t); },speed);
     return ()=>clearInterval(t);
   },[full,speed]);
   return (
@@ -722,26 +790,64 @@ function ProgressHeader({step,total,musicOn,onToggleMusic}) {
 function HiddenButton() {
   const [open,setOpen]=useState(false);
   const [rain,setRain]=useState(false);
-  const click=()=>{setOpen(true);setRain(true);setTimeout(()=>setRain(false),2800);};
+  const hideRef=useRef(null);
+  const rainRef=useRef(null);
+
+  const close=()=>{
+    setOpen(false);
+    clearTimeout(hideRef.current);
+  };
+
+  const click=()=>{
+    setOpen(true);
+    setRain(true);
+
+    clearTimeout(hideRef.current);
+    clearTimeout(rainRef.current);
+
+    rainRef.current=setTimeout(()=>setRain(false),2800);
+    hideRef.current=setTimeout(()=>setOpen(false),4000); // 4 seconds baad message hide ho jayega
+  };
+
+  useEffect(()=>()=> {
+    clearTimeout(hideRef.current);
+    clearTimeout(rainRef.current);
+  },[]);
+
   return (
     <>
-      <EmojiRain active={rain} emojis={["❤️","🌹","✨","💖"]} count={22}/>
+      <EmojiRain active={rain} emojis={["❤️","🌹","✨","💖"]} count={12}/>
       <div className="hidden-btn-wrap">
-        {!open
-          ? <motion.button onClick={click} className="btn btn-ghost"
-              animate={{y:[0,-3,0],rotate:[0,-1.5,1.5,-1.5,0]}}
-              transition={{duration:3,repeat:Infinity,repeatDelay:2}}
-              style={{minHeight:36,padding:".48rem .85rem",fontSize:".76rem"}}>
-              Do Not Click 😄
-            </motion.button>
-          : <motion.div initial={{opacity:0,y:14,scale:.88,rotate:-4}} animate={{opacity:1,y:0,scale:1,rotate:0}}
-              transition={{type:"spring",stiffness:280,damping:18}}
-              className="card" style={{maxWidth:230,padding:"1rem",borderRadius:18}}>
-              <div className="card-inner">
-                <p className="f-script" style={{color:"var(--cream)",fontSize:"1.18rem",lineHeight:1.5}}>{CONFIG.hiddenSecret}</p>
-              </div>
-            </motion.div>
-        }
+        <AnimatePresence mode="wait">
+          {!open
+            ? <motion.button key="hidden-btn" onClick={click} className="btn btn-ghost"
+                initial={{opacity:0,y:8,scale:.94}}
+                animate={{opacity:1,y:[0,-3,0],rotate:[0,-1.5,1.5,-1.5,0],scale:1}}
+                exit={{opacity:0,y:8,scale:.94}}
+                transition={{
+                  y:{duration:3,repeat:Infinity,repeatDelay:2},
+                  rotate:{duration:3,repeat:Infinity,repeatDelay:2}
+                }}
+                style={{minHeight:36,padding:".48rem .85rem",fontSize:".76rem"}}>
+                Do Not Click 😄
+              </motion.button>
+            : <motion.div key="hidden-msg" initial={{opacity:0,y:14,scale:.88,rotate:-4}} animate={{opacity:1,y:0,scale:1,rotate:0}}
+                exit={{opacity:0,y:14,scale:.88,rotate:4}}
+                transition={{type:"spring",stiffness:280,damping:18}}
+                className="card" style={{maxWidth:230,padding:"1rem",borderRadius:18}}>
+                <div className="card-inner" style={{position:"relative",paddingTop:6}}>
+                  <button type="button" onClick={close}
+                    aria-label="Close hidden message"
+                    style={{position:"absolute",top:-8,right:-8,width:24,height:24,borderRadius:"50%",
+                      border:"1px solid rgba(255,220,160,.22)",background:"rgba(8,4,15,.75)",
+                      color:"var(--gold2)",cursor:"pointer",fontWeight:800,lineHeight:1}}>
+                    ×
+                  </button>
+                  <p className="f-script" style={{color:"var(--cream)",fontSize:"1.18rem",lineHeight:1.5}}>{CONFIG.hiddenSecret}</p>
+                </div>
+              </motion.div>
+          }
+        </AnimatePresence>
       </div>
     </>
   );
@@ -828,16 +934,16 @@ function EntryStep({onNext}) {
     <Card wide>
       <div className="grid-2">
         <motion.div variants={staggerVar} initial="hidden" animate="show">
-          <motion.div variants={fadeUpVar}><Kicker>🎂 Birthday Film · Luxury Cut · 2025</Kicker></motion.div>
+          <motion.div variants={fadeUpVar}><Kicker>🎂 Birthday Surprise · Dil Se · 2026</Kicker></motion.div>
           <motion.div variants={fadeUpVar} className="title-xl" style={{marginTop:".9rem",lineHeight:.88}}>
             Happy<br/>Birthday,<br/><span className="rose-shine">{CONFIG.herName}</span>
           </motion.div>
           <motion.p variants={fadeUpVar} className="copy" style={{marginTop:"1.1rem",maxWidth:520}}>
-            Ye ek website nahi — ye ek smooth cinematic birthday experience hai. Thori funny baatein, thori genuine feelings, ek cute game, kuch respectful promises aur ek special final scene — sab apke liye.
+            Ye sirf birthday website nahi — ye meri taraf se aapke liye ek romantic, respectful aur dil se bana hua surprise hai: dua, care, smile mission, thori comedy aur bohot sincere feelings.
           </motion.p>
           <motion.div variants={fadeUpVar} style={{marginTop:"1.6rem",display:"flex",gap:12,flexWrap:"wrap"}}>
             <Btn onClick={onNext}>Start The Film →</Btn>
-            <Btn variant="secondary">Made with feelings 💌</Btn>
+            <Btn variant="secondary">Made with dil, dua & care 💌</Btn>
           </motion.div>
           <motion.div variants={fadeUpVar} style={{marginTop:"1.5rem",paddingTop:"1.3rem",borderTop:"1px solid rgba(255,220,160,.13)"}}>
             <Typewriter lines={CONFIG.personalLines}/>
@@ -849,7 +955,7 @@ function EntryStep({onNext}) {
           <TiltCard><Silhouette/></TiltCard>
           {/* Feature pills */}
           <div style={{display:"flex",flexWrap:"wrap",gap:8,marginTop:14,justifyContent:"center"}}>
-            {[["😄","Funny"],["❤️","Emotional"],["🎮","Game"],["🎙️","Voice"],["💌","Letter"],["🤍","Promises"]].map(([e,l])=>(
+            {[["😄","Smile"],["🤍","Respect"],["❤️","Care"],["🎁","Presents"],["💌","Letter"]].map(([e,l])=>(
               <span key={l} className="kicker" style={{fontSize:".62rem"}}>
                 {e} {l}
               </span>
@@ -868,9 +974,9 @@ function FeaturesStep({onNext,onBack}) {
   const [revealed,setRevealed]=useState({});
   return (
     <Card wide>
-      <SectionHead kicker="😄 Classified Editorial File"
-        title={<><span className="gold-shine">Future Wife</span> Features</>}
-        sub="Tap karo. Har card apki ek cute, classy aur thori dangerous quality reveal karega."/>
+      <SectionHead kicker="🌸 Dil Jeetne Wali File"
+        title={<><span className="gold-shine">Aapki</span> Dil Jeetne Wali Qualities</>}
+        sub="Har card ek alag reason hai ke aap meri nazar me sirf achi nahi, genuinely special aur attractive hain."/>
       <motion.div variants={staggerVar} initial="hidden" animate="show" className="grid-cards">
         {CONFIG.futureWifeFeatures.map((item,i)=>{
           const open=!!revealed[i];
@@ -895,7 +1001,7 @@ function FeaturesStep({onNext,onBack}) {
           );
         })}
       </motion.div>
-      <NavRow onBack={onBack} onNext={onNext} nextLabel="Why You're Special →"/>
+      <NavRow onBack={onBack} onNext={onNext} nextLabel="Why You Matter →"/>
     </Card>
   );
 }
@@ -906,9 +1012,9 @@ function FeaturesStep({onNext,onBack}) {
 function WhySpecialStep({onNext,onBack}) {
   return (
     <Card wide>
-      <SectionHead kicker="❤️ Dil Se — Serious Section"
-        title={<>Why You're <span className="rose-shine">Special</span></>}
-        sub="Ab funny part ke baad real part. Ye sab dil se hai — respectfully, genuinely."/>
+      <SectionHead kicker="❤️ Dil Ka Reason"
+        title={<>Why You <span className="rose-shine">Matter</span></>}
+        sub="Kuch log sirf pasand nahi aate, dil ko comfortable aur close lagne lagte hain. Ye section usi feeling ke naam."/>
       <motion.div variants={staggerVar} initial="hidden" animate="show" className="grid-cards">
         {CONFIG.whySpecial.map((item,i)=>(
           <motion.div key={item.title} variants={fadeUpVar} className="mini-card">
@@ -920,109 +1026,6 @@ function WhySpecialStep({onNext,onBack}) {
           </motion.div>
         ))}
       </motion.div>
-      <NavRow onBack={onBack} onNext={onNext} nextLabel="Voice Message →"/>
-    </Card>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   SCREEN 4: VOICE NOTE
-═══════════════════════════════════════════════════════════════ */
-function VoiceStep({onNext,onBack}) {
-  const [playing,setPlaying]=useState(false);
-  const [played,setPlayed]=useState(false);
-  const [progress,setProgress]=useState(0);
-  const audioRef=useRef(null);
-  const ivRef=useRef(null);
-
-  const toggle=()=>{
-    const a=audioRef.current;
-    if(!a) return;
-    if(playing){a.pause();setPlaying(false);clearInterval(ivRef.current);return;}
-    a.play().catch(()=>{});
-    setPlaying(true); setPlayed(true);
-    ivRef.current=setInterval(()=>{
-      if(a.duration) setProgress((a.currentTime/a.duration)*100);
-      if(a.ended){setPlaying(false);clearInterval(ivRef.current);}
-    },180);
-  };
-  useEffect(()=>()=>clearInterval(ivRef.current),[]);
-
-  const bars = Array.from({length:36},(_,i)=>{
-    const h=[35,55,75,45,85,40,70,60,90,48,65,55,92,42,68,78,52,88,38,72,58,82,46,62,76,44,68,52,88,58,72,46,80,55,70,48][i]||50;
-    const filled=(i/36)*100<=progress;
-    return {h, filled};
-  });
-
-  return (
-    <Card narrow>
-      <audio ref={audioRef} src={CONFIG.voiceNoteUrl} onEnded={()=>{setPlaying(false);setProgress(100);}}/>
-      <SectionHead kicker="🎙️ Voice Note · From Hassan"
-        title={<>A Message <span className="gold-shine">Just For You</span></>}
-        sub="Type se zyada powerful hai voice. Ye message sirf apke liye record kiya gaya."/>
-
-      <TiltCard>
-        <div className="voice-panel" style={{maxWidth:580,margin:"0 auto",textAlign:"center"}}>
-          {/* Star field inside */}
-          {useMemo(()=>Array.from({length:22},(_,i)=>({
-            id:i,l:`${Math.random()*100}%`,t:`${Math.random()*50}%`,
-            del:`${Math.random()*2}s`,dur:`${1.5+Math.random()*2}s`,
-          })),[]).map(s=>(
-            <span key={s.id} style={{position:"absolute",left:s.l,top:s.t,width:1.5,height:1.5,
-              borderRadius:"50%",background:"rgba(255,248,225,.7)",
-              animation:`silStarTwinkle ${s.dur} ease-in-out ${s.del} infinite`}}/>
-          ))}
-          <div style={{position:"relative",zIndex:1}}>
-            {/* Big play button */}
-            <div style={{position:"relative",display:"inline-block",marginBottom:"1.4rem"}}>
-              {playing&&<>
-                <div style={{position:"absolute",inset:-14,borderRadius:"50%",border:"1.5px solid rgba(212,83,107,.55)",animation:"pulse-ring 1.4s ease-out infinite"}}/>
-                <div style={{position:"absolute",inset:-22,borderRadius:"50%",border:"1px solid rgba(212,83,107,.3)",animation:"pulse-ring 1.4s ease-out .5s infinite"}}/>
-              </>}
-              <style>{`@keyframes pulse-ring{0%{transform:scale(.85);opacity:1}100%{transform:scale(2.2);opacity:0}}`}</style>
-              <motion.button onClick={toggle} whileHover={{scale:1.08}} whileTap={{scale:.92}}
-                style={{width:88,height:88,borderRadius:"50%",border:"1.5px solid rgba(255,220,160,.30)",
-                  background:"radial-gradient(circle at 36% 30%, rgba(255,255,255,.22), rgba(201,168,76,.14), rgba(212,83,107,.18))",
-                  boxShadow:playing?"0 0 50px rgba(212,83,107,.55), 0 16px 40px rgba(0,0,0,.5)":"0 16px 40px rgba(0,0,0,.5)",
-                  fontSize:"2rem",color:"#fff",cursor:"pointer",position:"relative",
-                  transition:"box-shadow .3s"}}>
-                {playing?"⏸️":"▶️"}
-              </motion.button>
-            </div>
-
-            <motion.h3 key={played?playing?"p":"d":"i"} initial={{opacity:0,y:6}} animate={{opacity:1,y:0}}
-              className="f-display" style={{color:"var(--cream)",fontSize:"1.6rem",fontWeight:700,marginBottom:".4rem"}}>
-              {playing?"Suno… ❤️":played?"Dobara sunna hai? 🥹":"Play Message from Hassan"}
-            </motion.h3>
-            <p className="copy f-body" style={{fontSize:".88rem",marginBottom:"1.4rem"}}>
-              {played?"Main lucky hun ke tum meri life me ho ❤️":"Happy Birthday… Allah tumhe hamesha khush rakhe…"}
-            </p>
-
-            {/* Waveform */}
-            <div style={{display:"flex",alignItems:"center",gap:3,height:44,justifyContent:"center"}}>
-              {bars.map((b,i)=>(
-                <motion.div key={i} className="wavebar"
-                  animate={playing&&b.filled?{scaleY:[1,1.5,.7,1.3,1]}:{scaleY:1}}
-                  transition={{duration:.4,delay:i*.015,repeat:playing?Infinity:0}}
-                  style={{
-                    width:5,flex:"0 0 5px",borderRadius:3,
-                    height:`${b.h}%`,
-                    background:b.filled
-                      ?"linear-gradient(180deg,var(--gold2),var(--rose))"
-                      :"rgba(255,240,210,.14)",
-                    boxShadow:b.filled?"0 0 6px rgba(201,168,76,.4)":"none",
-                    transition:"background .25s",
-                  }}/>
-              ))}
-            </div>
-          </div>
-        </div>
-      </TiltCard>
-
-      <motion.p className="f-script" initial={{opacity:0}} animate={{opacity:1}} transition={{delay:.3}}
-        style={{textAlign:"center",color:"var(--gold2)",fontSize:"1.1rem",marginTop:"1rem",opacity:.8}}>
-        💡 /audio/voice-message.mp3 pe apni recording rakho
-      </motion.p>
       <NavRow onBack={onBack} onNext={onNext} nextLabel="Heart Game →"/>
     </Card>
   );
@@ -1037,162 +1040,159 @@ function HeartGameStep({onNext,onBack}) {
   const [started,setStarted]=useState(false);
   const [done,setDone]=useState(false);
   const [rain,setRain]=useState(false);
+  const [unlocked,setUnlocked]=useState([]);
   const ivRef=useRef(null);
   const toRef=useRef(null);
+  const target=10;
 
   const spawn=useCallback(()=>{
     const id=Date.now()+Math.random();
-    const e=["❤️","💖","🌹","💝","✨"][Math.floor(Math.random()*5)];
-    setHearts(h=>[...h.slice(-12),{id,e,x:8+Math.random()*84,y:12+Math.random()*72}]);
+    const pool=["❤️","💖","🌹","💝","✨","🤍"];
+    const e=pool[Math.floor(Math.random()*pool.length)];
+    const secret=CONFIG.heartGameSecrets[Math.floor(Math.random()*CONFIG.heartGameSecrets.length)];
+    setHearts(h=>[...h.slice(-7),{id,e,secret,x:8+Math.random()*84,y:15+Math.random()*68}]);
   },[]);
 
   const start=()=>{
     clearInterval(ivRef.current); clearTimeout(toRef.current);
-    setStarted(true);setDone(false);setCaught(0);setHearts([]);
+    setStarted(true);setDone(false);setCaught(0);setHearts([]);setUnlocked([]);
     spawn();
-    ivRef.current=setInterval(spawn,820);
-    toRef.current=setTimeout(()=>{clearInterval(ivRef.current);setDone(true);},13000);
+    ivRef.current=setInterval(spawn,950);
+    toRef.current=setTimeout(()=>{clearInterval(ivRef.current);setDone(true);},18000);
   };
-  const catchIt=id=>{
-    setHearts(h=>h.filter(x=>x.id!==id));
-    setCaught(c=>{if(c+1>=8){setRain(true);setTimeout(()=>setRain(false),2800);}return c+1;});
+
+  const catchIt=heart=>{
+    setHearts(h=>h.filter(x=>x.id!==heart.id));
+    setUnlocked(u=>{
+      const exists=u.some(x=>x.label===heart.secret.label);
+      return exists?u:[...u,heart.secret].slice(-5);
+    });
+    setCaught(c=>{
+      const next=c+1;
+      if(next>=target){
+        clearInterval(ivRef.current);
+        clearTimeout(toRef.current);
+        setDone(true);
+        setRain(true);
+        setTimeout(()=>setRain(false),3200);
+      }
+      return next;
+    });
   };
+
   useEffect(()=>()=>{clearInterval(ivRef.current);clearTimeout(toRef.current);},[]);
 
   return (
     <Card wide>
-      <EmojiRain active={rain} emojis={["❤️","💖","🌹","✨"]}/>
-      <SectionHead kicker="🎮 Mini Game — Catch The Heart"
-        title={<>Mera Dil <span className="rose-shine">Pakro</span></>}
-        sub="Hearts click karo. Officially mera dil pakarne ki practice — respectfully, birthday edition. 😄"/>
+      <EmojiRain active={rain} emojis={["❤️","💖","🌹","✨","🤍"]} count={16}/>
+      <SectionHead kicker="🎮 Special Heart Game — Unlock Her Smile"
+        title={<>Collect <span className="rose-shine">Dil Wale Hearts</span></>}
+        sub="Har heart ke andar ek choti si feeling hidden hai. 10 hearts collect karo aur final birthday note unlock ho jayega — bilkul special edition."/>
 
-      <div style={{position:"relative",borderRadius:22,overflow:"hidden",
-        background:"linear-gradient(145deg,rgba(30,5,15,.85),rgba(10,2,8,.95))",
-        border:"1px solid rgba(212,83,107,.18)",height:340,
-        boxShadow:"0 18px 60px rgba(0,0,0,.6), inset 0 0 60px rgba(107,16,40,.12)"}}>
-        {/* Grid overlay */}
-        <div style={{position:"absolute",inset:0,
-          backgroundImage:"linear-gradient(rgba(212,83,107,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(212,83,107,.04) 1px,transparent 1px)",
-          backgroundSize:"38px 38px",borderRadius:"inherit"}}/>
+      <div style={{display:"grid",gridTemplateColumns:"minmax(0,1.4fr) minmax(240px,.6fr)",gap:14,alignItems:"stretch"}}>
+        <div style={{position:"relative",borderRadius:26,overflow:"hidden",
+          background:"radial-gradient(circle at 50% 24%,rgba(240,112,144,.18),transparent 32%), linear-gradient(145deg,rgba(30,5,15,.92),rgba(8,2,8,.98))",
+          border:"1px solid rgba(255,220,160,.18)",height:380,
+          boxShadow:"0 24px 75px rgba(0,0,0,.62), inset 0 0 70px rgba(107,16,40,.18)"}}>
+          <div style={{position:"absolute",inset:0,
+            backgroundImage:"radial-gradient(circle at 20% 20%,rgba(255,241,194,.10),transparent 2px),radial-gradient(circle at 70% 35%,rgba(240,112,144,.12),transparent 2px),linear-gradient(rgba(212,83,107,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(212,83,107,.035) 1px,transparent 1px)",
+            backgroundSize:"120px 120px, 150px 150px, 38px 38px, 38px 38px",borderRadius:"inherit"}}/>
 
-        {!started&&(
-          <div style={{position:"absolute",inset:0,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:16}}>
-            <motion.div animate={{scale:[1,1.15,1],rotate:[0,8,-8,0]}} transition={{duration:2.2,repeat:Infinity}}
-              style={{fontSize:"5rem",filter:"drop-shadow(0 0 24px rgba(212,83,107,.8))"}}>❤️</motion.div>
-            <Btn onClick={start}>Start Game →</Btn>
-          </div>
-        )}
+          <motion.div animate={{scale:[1,1.04,1],opacity:[.65,1,.65]}} transition={{duration:2.4,repeat:Infinity}}
+            style={{position:"absolute",left:"50%",top:"50%",transform:"translate(-50%,-50%)",width:170,height:170,borderRadius:"50%",
+              background:"radial-gradient(circle,rgba(240,112,144,.12),transparent 70%)"}}/>
 
-        <AnimatePresence>
-          {started&&hearts.map(h=>(
-            <motion.button key={h.id} className="heart-btn"
-              initial={{scale:0,opacity:0,rotate:-20}}
-              animate={{scale:1,opacity:1,rotate:0}}
-              exit={{scale:0,opacity:0,y:-30}}
-              onClick={()=>catchIt(h.id)}
-              style={{left:`${h.x}%`,top:`${h.y}%`}}>
-              {h.e}
-            </motion.button>
-          ))}
-        </AnimatePresence>
-
-        {started&&!done&&(
-          <motion.div initial={{opacity:0,x:16}} animate={{opacity:1,x:0}}
-            style={{position:"absolute",top:12,right:14,
-              background:"rgba(10,2,8,.85)",border:"1px solid rgba(212,83,107,.22)",
-              borderRadius:10,padding:".4rem .9rem",
-              display:"flex",alignItems:"center",gap:6,backdropFilter:"blur(8px)"}}>
-            <span style={{filter:"drop-shadow(0 0 6px rgba(212,83,107,.8))"}}>❤️</span>
-            <p className="f-body" style={{fontWeight:800,color:"var(--cream)",fontSize:".9rem"}}>{caught}</p>
-          </motion.div>
-        )}
-
-        <AnimatePresence>
-          {done&&(
-            <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}
-              style={{position:"absolute",inset:0,display:"flex",flexDirection:"column",alignItems:"center",
-                justifyContent:"center",background:"rgba(4,1,10,.88)",backdropFilter:"blur(14px)",
-                textAlign:"center",padding:"2rem"}}>
-              <motion.div initial={{scale:0}} animate={{scale:1}} transition={{type:"spring",stiffness:260,damping:18}}
-                style={{fontSize:"3.5rem",marginBottom:".8rem",filter:"drop-shadow(0 0 20px rgba(212,83,107,.8))"}}>🎉</motion.div>
-              <div className="f-display rose-shine" style={{fontSize:"2rem",fontWeight:700}}>Tumne {caught} dil pakde!</div>
-              <p className="copy f-body" style={{marginTop:".5rem"}}>Already tumhare paas tha ❤️<br/>Game sirf confirm karna tha.</p>
-              <Btn variant="secondary" onClick={start} style={{marginTop:"1rem"}}>Dobara Khelo 🔄</Btn>
-            </motion.div>
+          {!started&&(
+            <div style={{position:"absolute",inset:0,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:16,textAlign:"center",padding:24}}>
+              <motion.div animate={{scale:[1,1.16,1],rotate:[0,7,-7,0]}} transition={{duration:2.2,repeat:Infinity}}
+                style={{fontSize:"5rem",filter:"drop-shadow(0 0 28px rgba(240,112,144,.9))"}}>💝</motion.div>
+              <div className="f-display gold-shine" style={{fontSize:"clamp(1.8rem,4vw,3rem)",fontWeight:700,lineHeight:1}}>Fariha Smile Mission</div>
+              <p className="copy" style={{maxWidth:480}}>Dil wale hearts collect karo. Har click ek hidden line reveal karega — thori cute, thori caring, poori dil se.</p>
+              <Btn onClick={start}>Start Mission →</Btn>
+            </div>
           )}
-        </AnimatePresence>
-      </div>
-      <NavRow onBack={onBack} onNext={onNext} nextLabel="Love Meter →"/>
-    </Card>
-  );
-}
 
-/* ═══════════════════════════════════════════════════════════════
-   SCREEN 6: LOVE METER
-═══════════════════════════════════════════════════════════════ */
-function LoveMeterStep({onNext,onBack}) {
-  const [val,setVal]=useState(72);
-  const [rain,setRain]=useState(false);
-  const idx=val<35?0:val<65?1:val<90?2:3;
-  const col=val<35?"#c0783a":val<65?"var(--rose)":val<90?"var(--crimson)":"var(--wine)";
-  const perfect=()=>{setVal(100);setRain(true);setTimeout(()=>setRain(false),3000);};
-
-  return (
-    <Card narrow>
-      <EmojiRain active={rain} emojis={["❤️","💯","💖","✨"]} count={30}/>
-      <SectionHead kicker="💘 Love Meter — Fun Section"
-        title={<>How <span className="gold-shine">Special</span> Are You?</>}
-        sub="Answer to obviously 100 hai, lekin thora birthday drama zaroori hota hai. 😌"/>
-
-      <TiltCard style={{maxWidth:580,margin:"0 auto"}}>
-        <div className="mini-card" style={{textAlign:"center",padding:"2.2rem",cursor:"default"}}>
-          {/* Labels */}
-          <div style={{display:"flex",justifyContent:"space-between",marginBottom:".8rem"}}>
-            {["Normal 😐","Special 🥹","My Fav 💖"].map(l=>(
-              <p key={l} className="f-body" style={{fontSize:".68rem",fontWeight:700,color:"var(--cream2)",letterSpacing:".04em"}}>{l}</p>
+          <AnimatePresence>
+            {started&&hearts.map(h=>(
+              <motion.button key={h.id} className="heart-btn"
+                initial={{scale:0,opacity:0,rotate:-25}}
+                animate={{scale:1,opacity:1}}
+                exit={{scale:0,opacity:0,y:-34}}
+                transition={{duration:.22}}
+                onClick={()=>catchIt(h)}
+                style={{left:`${h.x}%`,top:`${h.y}%`,fontSize:"clamp(1.8rem,4vw,3rem)"}}>
+                {h.e}
+              </motion.button>
             ))}
-          </div>
-          {/* Bar */}
-          <div style={{height:20,borderRadius:99,background:"rgba(255,240,210,.09)",overflow:"hidden",padding:3}}>
-            <motion.div animate={{width:`${val}%`}} transition={{duration:.35,ease:[.16,1,.3,1]}}
-              style={{height:"100%",borderRadius:99,
-                background:`linear-gradient(90deg,${col},var(--rose),var(--gold))`,
-                boxShadow:`0 0 20px ${col}80`}}>
-              <motion.div animate={{x:["0%","200%"]}} transition={{duration:1.5,repeat:Infinity,ease:"linear"}}
-                style={{width:"35%",height:"100%",background:"linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent)"}}/>
-            </motion.div>
-          </div>
-          {/* Big number */}
-          <motion.div animate={{scale:[1,1.04,1]}} transition={{duration:2,repeat:Infinity}}
-            className="f-display gold-shine"
-            style={{fontSize:"clamp(3.5rem,9vw,6rem)",fontWeight:700,lineHeight:1,margin:"1.2rem 0 .4rem"}}>
-            {val}%
-          </motion.div>
-          <input type="range" min={1} max={100} value={val} onChange={e=>setVal(+e.target.value)} style={{width:"100%",marginBottom:"1rem"}}/>
-          <motion.div key={idx} initial={{opacity:0,y:8}} animate={{opacity:1,y:0}}
-            style={{padding:".85rem 1.1rem",borderRadius:14,background:"rgba(107,16,40,.25)",border:"1px solid rgba(212,83,107,.2)"}}>
-            <p className="f-script" style={{color:"var(--gold2)",fontSize:"1.2rem"}}>{CONFIG.loveMeterMessages[idx]}</p>
-          </motion.div>
-        </div>
-      </TiltCard>
+          </AnimatePresence>
 
-      <NavRow onBack={onBack} onNext={onNext} nextLabel="Promises →"
-        extra={<Btn variant="secondary" onClick={perfect}>Make it 100% 💯</Btn>}/>
+          {started&&(
+            <div style={{position:"absolute",top:12,left:12,right:12,display:"flex",justifyContent:"space-between",gap:10,alignItems:"center",zIndex:4}}>
+              <div style={{background:"rgba(10,2,8,.82)",border:"1px solid rgba(255,220,160,.18)",borderRadius:999,padding:".42rem .85rem",}}>
+                <p className="f-body" style={{fontSize:".78rem",fontWeight:900,color:"var(--gold2)",letterSpacing:".08em"}}>HEARTS {caught}/{target}</p>
+              </div>
+              <div style={{flex:1,height:8,borderRadius:999,background:"rgba(255,240,210,.10)",overflow:"hidden",maxWidth:260}}>
+                <motion.div animate={{width:`${Math.min(100,(caught/target)*100)}%`}} style={{height:"100%",borderRadius:999,background:"linear-gradient(90deg,var(--rose),var(--gold2))",boxShadow:"0 0 14px rgba(240,112,144,.55)"}}/>
+              </div>
+            </div>
+          )}
+
+          <AnimatePresence>
+            {done&&(
+              <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}
+                style={{position:"absolute",inset:0,display:"flex",flexDirection:"column",alignItems:"center",
+                  justifyContent:"center",background:"rgba(4,1,10,.88)",
+                  textAlign:"center",padding:"2rem",zIndex:6}}>
+                <motion.div initial={{scale:0}} animate={{scale:1}} transition={{type:"spring",stiffness:260,damping:18}}
+                  style={{fontSize:"4rem",marginBottom:".8rem",filter:"drop-shadow(0 0 24px rgba(240,112,144,.9))"}}>🎉</motion.div>
+                <div className="f-display rose-shine" style={{fontSize:"clamp(2rem,5vw,3.4rem)",fontWeight:700,lineHeight:1}}>Mission Complete!</div>
+                <p className="copy f-body" style={{marginTop:".75rem",maxWidth:560}}>Aapne {caught} hearts collect kiye — lekin sach ye hai ke dil to pehle hi aapki respectful smile aur soft vibe se impress ho chuka tha. ❤️</p>
+                <div style={{display:"flex",gap:10,flexWrap:"wrap",justifyContent:"center",marginTop:"1rem"}}>
+                  <Btn variant="secondary" onClick={start}>Dobara Khelo 🔄</Btn>
+                  <Btn onClick={onNext}>Promises Unlock →</Btn>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        <div className="mini-card" style={{cursor:"default",minHeight:380,display:"flex",flexDirection:"column",justifyContent:"space-between",background:"linear-gradient(145deg,rgba(61,8,23,.55),rgba(255,240,210,.045))"}}>
+          <div>
+            <p className="f-body" style={{color:"var(--gold2)",fontSize:".67rem",fontWeight:900,letterSpacing:".16em",textTransform:"uppercase"}}>Unlocked Feelings</p>
+            <div className="f-display" style={{color:"var(--cream)",fontSize:"1.6rem",fontWeight:700,marginTop:8,lineHeight:1.05}}>Har heart me ek baat</div>
+            <div style={{height:1,background:"linear-gradient(90deg,rgba(255,220,160,.30),transparent)",margin:"1rem 0"}}/>
+            <div style={{display:"grid",gap:10}}>
+              {CONFIG.heartGameSecrets.map((s,i)=>{
+                const open=unlocked.some(u=>u.label===s.label) || done;
+                return (
+                  <motion.div key={s.label} animate={{opacity:open?1:.45,scale:open?1:.98}}
+                    style={{borderRadius:16,padding:".75rem .85rem",border:open?"1px solid rgba(201,168,76,.30)":"1px dashed rgba(255,220,160,.14)",background:open?"rgba(201,168,76,.08)":"rgba(255,240,210,.035)"}}>
+                    <p className="f-body" style={{fontWeight:900,color:open?"var(--gold2)":"rgba(240,230,211,.48)",fontSize:".78rem"}}>{open?"💖":"🔒"} {s.label}</p>
+                    <p className="copy" style={{fontSize:".82rem",lineHeight:1.55,marginTop:4,color:open?"var(--cream2)":"rgba(240,230,211,.38)"}}>{open?s.text:"Heart collect karo to ye line unlock hogi."}</p>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+          <p className="f-script" style={{color:"var(--gold2)",fontSize:"1.15rem",lineHeight:1.35,marginTop:"1rem"}}>Goal simple hai: smile unlock karni hai, pressure nahi. 😄</p>
+        </div>
+      </div>
+      <NavRow onBack={onBack} onNext={onNext} nextLabel="Promises →"/>
     </Card>
   );
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SCREEN 7: PROMISES
+   SCREEN 6: PROMISES
 ═══════════════════════════════════════════════════════════════ */
 function PromisesStep({onNext,onBack}) {
   const [checked,setChecked]=useState({});
   const all=Object.keys(checked).length===CONFIG.promises.length;
   return (
     <Card>
-      <SectionHead kicker="🤍 Real Promises — Signed & Sealed"
+      <SectionHead kicker="🤍 Promises — Dil Se"
         title={<>My <span className="gold-shine">Promises</span></>}
-        sub="Ye promises abhi ke liye bhi hain aur future ke liye bhi — respect, care aur clean niyat ke saath."/>
+        sub="Ye filmy dialogues nahi — meri sincere niyat ka clear version hai: respect, trust, care, loyalty aur thora sa cute mazak."/>
       <div className="grid-promises">
         {CONFIG.promises.map((p,i)=>{
           const done=!!checked[i];
@@ -1223,25 +1223,58 @@ function PromisesStep({onNext,onBack}) {
           {all&&(
             <motion.div initial={{opacity:0,y:14,scale:.94}} animate={{opacity:1,y:0,scale:1}} className="mini-card"
               style={{textAlign:"center",padding:".9rem",background:"rgba(201,168,76,.09)",borderColor:"rgba(201,168,76,.28)"}}>
-              <p className="f-script" style={{color:"var(--gold2)",fontSize:"1.25rem"}}>Sab promises confirm! Witnesses: dil aur Allah ❤️</p>
+              <p className="f-script" style={{color:"var(--gold2)",fontSize:"1.25rem"}}>Sab promises confirm — ab zimmedari aur bhi sweet ho gayi 🤍</p>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
+      <NavRow onBack={onBack} onNext={onNext} nextLabel="Birthday Presents →"/>
+    </Card>
+  );
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   SCREEN 7: BIRTHDAY PRESENTS
+═══════════════════════════════════════════════════════════════ */
+function PresentsStep({onNext,onBack}) {
+  return (
+    <Card wide>
+      <SectionHead kicker="🎁 Birthday Presents — Dil Se"
+        title={<>Gifts For <span className="gold-shine">{CONFIG.herName}</span></>}
+        sub="Ye gifts wrapping paper wale nahi — dil wale presents hain: dua, respect, trust, time, sukoon aur ek cute food deal."/>
+      <motion.div variants={staggerVar} initial="hidden" animate="show" className="grid-cards">
+        {CONFIG.birthdayPresents.map((gift,i)=>(
+          <motion.div key={gift.title} variants={fadeUpVar} className="mini-card"
+            style={{minHeight:210,textAlign:"left"}}>
+            <motion.div animate={{y:[0,-6,0],scale:[1,1.08,1]}} transition={{duration:3+i*.35,repeat:Infinity}}
+              style={{fontSize:"2.7rem",marginBottom:".8rem",filter:"drop-shadow(0 6px 14px rgba(201,168,76,.35))"}}>
+              {gift.emoji}
+            </motion.div>
+            <div className="f-display" style={{fontSize:"1.45rem",fontWeight:700,color:"var(--cream)",lineHeight:1.1}}>
+              {gift.title}
+            </div>
+            <div style={{height:1,background:"linear-gradient(90deg,rgba(201,168,76,.3),transparent)",margin:".75rem 0"}}/>
+            <p className="copy f-body" style={{fontSize:".92rem",lineHeight:1.75}}>
+              {gift.text}
+            </p>
+          </motion.div>
+        ))}
+      </motion.div>
       <NavRow onBack={onBack} onNext={onNext} nextLabel="Read Letter →"/>
     </Card>
   );
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SCREEN 8: LETTER
+   SCREEN 7: LETTER
 ═══════════════════════════════════════════════════════════════ */
 function LetterStep({onNext,onBack}) {
   return (
     <Card narrow>
-      <SectionHead kicker="💌 Main Scene — The Letter"
+      <SectionHead kicker="💌 Main Scene — Love Letter"
         title={<><span className="gold-shine">Birthday</span> Letter</>}
-        sub="Simple, readable, emotional — exactly waisa jaisa ek respectful birthday letter hona chahiye."/>
+        sub="Ye letter aisa rakha hai ke har line alag feel de: respect bhi, romance bhi, future bhi, aur halka sa Hassan-style mazak bhi."/>
       <motion.div initial={{opacity:0,y:22,rotateX:-4}} animate={{opacity:1,y:0,rotateX:0}}
         transition={{delay:.12,duration:.55,ease:[.22,1,.36,1]}}
         style={{maxWidth:700,margin:"0 auto"}}>
@@ -1263,7 +1296,7 @@ function LetterStep({onNext,onBack}) {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SCREEN 9: FINALE
+   SCREEN 8: FINALE
 ═══════════════════════════════════════════════════════════════ */
 function FinalStep({onBack}) {
   const [yes,setYes]=useState(false);
@@ -1273,7 +1306,7 @@ function FinalStep({onBack}) {
   return (
     <Card narrow>
       <Confetti active={yes}/>
-      <EmojiRain active={yes} emojis={["❤️","💖","🎊","✨","🌷","💍"]} count={32}/>
+      <EmojiRain active={yes} emojis={["❤️","💖","🎊","✨","🌷","💍"]} count={16}/>
 
       <div style={{textAlign:"center",maxWidth:620,margin:"0 auto"}}>
         <TiltCard style={{display:"inline-block",marginBottom:"1.6rem"}}>
@@ -1285,11 +1318,11 @@ function FinalStep({onBack}) {
         </TiltCard>
 
         <motion.div initial={{opacity:0,y:18}} animate={{opacity:1,y:0}} transition={{delay:.08}}>
-          <Kicker>✨ Final Scene · The Ending</Kicker>
+          <Kicker>✨ Final Scene · Dil Se Dua</Kicker>
           <div className="title-xl" style={{marginTop:".9rem",lineHeight:.88}}>
-            <span className="gold-shine">Happy First</span><br/>
+            <span className="gold-shine">Happy</span><br/>
             <span className="rose-shine">Birthday</span><br/>
-            Together
+            Fariha
           </div>
         </motion.div>
 
@@ -1302,7 +1335,7 @@ function FinalStep({onBack}) {
           style={{margin:"1.4rem 0 0"}}>
           <div style={{height:1,background:"linear-gradient(90deg,transparent,rgba(201,168,76,.3),rgba(212,83,107,.2),transparent)",marginBottom:"1.4rem"}}/>
           <div className="f-display" style={{fontSize:"clamp(1.6rem,4vw,2.4rem)",fontWeight:700,color:"var(--cream)"}}>
-            Agle Saal InshaAllah? 🤍
+            Agle Saal Aur Zyada Haq Se? ❤️
           </div>
         </motion.div>
 
@@ -1337,10 +1370,10 @@ function FinalStep({onBack}) {
               <motion.div animate={{scale:[1,1.05,1]}} transition={{duration:1.8,repeat:Infinity}}
                 className="f-display gold-shine"
                 style={{fontSize:"clamp(2.2rem,6vw,4rem)",fontWeight:700,lineHeight:1}}>
-                I Love You ❤️
+                Aap Meri Duaon Me Hain ❤️
               </motion.div>
               <p className="copy f-body" style={{maxWidth:480,margin:".6rem auto 0"}}>
-                Ye birthday surprise officially complete ho gaya. Ye sirf ek page nahi — ye ek beginning hai. Saath ke liye. Hamesha ke liye. 💍
+                Ye birthday surprise complete hua, lekin meri dua yahin se shuru hoti hai: Allah hamare liye jo behtareen ho, usme asani, izzat, mohabbat aur khushi ata farmae. Ameen 🤍
               </p>
               <div style={{display:"flex",justifyContent:"center",gap:"1rem",marginTop:"1.1rem"}}>
                 {["❤️","💌","🌹","✨","💍"].map((e,i)=>(
@@ -1389,10 +1422,9 @@ export default function BirthdaySurpriseApp() {
     <EntryStep    key="welcome"  onNext={next}/>,
     <FeaturesStep key="features" onNext={next} onBack={back}/>,
     <WhySpecialStep key="special" onNext={next} onBack={back}/>,
-    <VoiceStep    key="voice"    onNext={next} onBack={back}/>,
     <HeartGameStep key="game"   onNext={next} onBack={back}/>,
-    <LoveMeterStep key="meter"  onNext={next} onBack={back}/>,
     <PromisesStep  key="promises" onNext={next} onBack={back}/>,
+    <PresentsStep  key="presents" onNext={next} onBack={back}/>,
     <LetterStep    key="letter"  onNext={next} onBack={back}/>,
     <FinalStep     key="final"   onBack={back}/>,
   ];
