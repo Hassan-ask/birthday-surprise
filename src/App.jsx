@@ -301,6 +301,25 @@ function GlobalStyle() {
       .sil-star { position:absolute; border-radius:50%; background:rgba(255,248,225,.85); animation:silStarTwinkle 2.8s ease-in-out infinite; }
       @keyframes silStarTwinkle { 50%{opacity:.2; transform:scale(.5);} }
 
+      .romantic-snow {
+        position:absolute;
+        border-radius:50%;
+        background:rgba(255,255,255,.88);
+        box-shadow:0 0 10px rgba(255,255,255,.65);
+        pointer-events:none;
+        z-index:5;
+        animation-name: romanticSnowFall;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        will-change: transform, opacity;
+      }
+      @keyframes romanticSnowFall {
+        0%   { transform: translate3d(0,-20px,0); opacity:0; }
+        10%  { opacity:.85; }
+        82%  { opacity:.72; }
+        100% { transform: translate3d(var(--drift, 22px), 350px,0); opacity:0; }
+      }
+
       .sil-moon {
         position:absolute; top:22px; right:28px;
         width:56px; height:56px; border-radius:50%;
@@ -387,6 +406,91 @@ function GlobalStyle() {
       @media(max-width:660px) {
         .card { padding: 18px; border-radius: 24px; }
         .sil-moon { width:44px; height:44px; top:14px; right:16px; }
+
+        /* Mobile fix only for Heart Game screen */
+        .heart-screen {
+          padding: 12px !important;
+          overflow: visible !important;
+        }
+        .heart-screen .title-lg {
+          font-size: clamp(2rem, 10vw, 2.7rem) !important;
+          line-height: 1 !important;
+          letter-spacing: -0.035em !important;
+        }
+        .heart-screen .copy {
+          font-size: .88rem !important;
+          line-height: 1.62 !important;
+        }
+        .heart-game-layout {
+          grid-template-columns: 1fr !important;
+          gap: 12px !important;
+          width: 100% !important;
+          max-width: 100% !important;
+        }
+        .heart-arena {
+          height: min(58svh, 380px) !important;
+          min-height: 330px !important;
+          width: 100% !important;
+          border-radius: 20px !important;
+        }
+        .heart-arena-start {
+          padding: 16px !important;
+          gap: 10px !important;
+        }
+        .heart-arena-start .heart-start-icon {
+          font-size: 3.8rem !important;
+        }
+        .heart-arena-start .heart-start-title {
+          font-size: clamp(1.45rem, 8vw, 2.1rem) !important;
+        }
+        .heart-progress-row {
+          top: 10px !important;
+          left: 10px !important;
+          right: 10px !important;
+          gap: 7px !important;
+        }
+        .heart-progress-row .heart-count-pill {
+          padding: .36rem .62rem !important;
+          white-space: nowrap !important;
+        }
+        .heart-progress-row .heart-count-pill p {
+          font-size: .68rem !important;
+        }
+        .heart-progress-bar {
+          max-width: none !important;
+          height: 7px !important;
+        }
+        .heart-btn {
+          font-size: clamp(1.8rem, 9vw, 2.4rem) !important;
+          z-index: 5 !important;
+        }
+        .heart-info-panel {
+          min-height: auto !important;
+          width: 100% !important;
+          padding: 1rem !important;
+          border-radius: 20px !important;
+        }
+        .heart-info-panel .heart-panel-title {
+          font-size: 1.35rem !important;
+        }
+        .heart-unlock-list {
+          gap: 8px !important;
+        }
+        .heart-secret-card {
+          padding: .65rem .75rem !important;
+          border-radius: 14px !important;
+        }
+        .heart-secret-card .copy {
+          font-size: .78rem !important;
+          line-height: 1.45 !important;
+        }
+        .heart-screen .nav-row {
+          margin-top: 1rem !important;
+        }
+        .heart-screen .btn {
+          padding: .66rem 1rem !important;
+          font-size: .8rem !important;
+        }
       }
       @media(prefers-reduced-motion:reduce) {
         *, *::before, *::after { animation-duration:.001ms !important; animation-iteration-count:1 !important; }
@@ -578,115 +682,89 @@ function TiltCard({children, style={}, className=""}) {
    SILHOUETTE
 ═══════════════════════════════════════════════════════════════ */
 function Silhouette({compact=false}) {
-  const stars = useMemo(()=>Array.from({length:compact?12:22},(_,i)=>({
+  const snow = useMemo(()=>Array.from({length:compact?18:34},(_,i)=>({
     id:i,
-    left:`${6+Math.random()*88}%`,
-    top:`${5+Math.random()*56}%`,
-    w:Math.random()*2+.8,
-    delay:`${Math.random()*3}s`,
-    dur:`${1.8+Math.random()*2.4}s`,
-  })),[compact]);
-
-  const floating = useMemo(()=>Array.from({length:compact?3:5},(_,i)=>({
-    id:i,
-    left:`${12+Math.random()*76}%`,
-    top:`${18+Math.random()*38}%`,
-    delay:`${Math.random()*2.5}s`,
-    size:`${12+Math.random()*14}px`,
+    left:`${Math.random()*100}%`,
+    top:`-${8+Math.random()*35}px`,
+    size:`${1.6+Math.random()*3.2}px`,
+    drift:`${-42+Math.random()*84}px`,
+    delay:`${Math.random()*5.5}s`,
+    dur:`${6.5+Math.random()*5.5}s`,
+    opacity:.42+Math.random()*.48,
   })),[compact]);
 
   return (
     <div className={`silhouette ${compact?"compact":"full"}`} style={{
-      background:"radial-gradient(circle at 76% 18%, rgba(255,230,150,.20), transparent 24%), radial-gradient(circle at 24% 18%, rgba(240,112,144,.18), transparent 22%), linear-gradient(180deg,#100313 0%,#2b0617 45%,#6b1028 72%,#12040c 100%)",
+      backgroundImage:`
+        linear-gradient(180deg, rgba(4,2,10,.05) 0%, rgba(10,3,15,.08) 35%, rgba(61,8,23,.34) 72%, rgba(4,1,10,.86) 100%),
+        radial-gradient(circle at 50% 25%, rgba(255,230,150,.12), transparent 34%),
+        url("/images/romantic-couple.jpg")
+      `,
+      backgroundSize:"cover, cover, cover",
+      backgroundPosition:"center, center, center 54%",
+      backgroundRepeat:"no-repeat",
       border:"1px solid rgba(255,220,160,.22)",
-      boxShadow:"0 28px 90px rgba(0,0,0,.62), 0 0 70px rgba(212,83,107,.12), inset 0 1px 0 rgba(255,255,255,.10)"
+      boxShadow:"0 28px 90px rgba(0,0,0,.62), 0 0 70px rgba(212,83,107,.10), inset 0 1px 0 rgba(255,255,255,.10)"
     }}>
-      {stars.map(s=>(
-        <span key={s.id} className="sil-star" style={{
-          left:s.left, top:s.top, width:s.w, height:s.w,
-          animationDelay:s.delay, animationDuration:s.dur,
-          boxShadow:`0 0 ${s.w*5}px rgba(255,248,225,.75)`,
+      {/* Soft cinematic overlay */}
+      <div style={{
+        position:"absolute",
+        inset:0,
+        zIndex:1,
+        pointerEvents:"none",
+        background:"radial-gradient(circle at 50% 28%, transparent 0%, rgba(4,1,10,.10) 45%, rgba(4,1,10,.36) 100%)"
+      }}/>
+
+      {/* Snow falling on the romantic photo */}
+      {snow.map(s=>(
+        <span key={s.id} className="romantic-snow" style={{
+          left:s.left,
+          top:s.top,
+          width:s.size,
+          height:s.size,
+          opacity:s.opacity,
+          animationDelay:s.delay,
+          animationDuration:s.dur,
+          "--drift":s.drift,
         }}/>
       ))}
 
-      {floating.map(h=>(
-        <motion.span key={h.id}
-          animate={{y:[0,-14,0],opacity:[.45,1,.55],scale:[.9,1.15,.9]}}
-          transition={{duration:3.2,delay:parseFloat(h.delay),repeat:Infinity,ease:"easeInOut"}}
-          style={{position:"absolute",left:h.left,top:h.top,fontSize:h.size,zIndex:3,filter:"drop-shadow(0 0 10px rgba(240,112,144,.8))"}}>
-          ❤
-        </motion.span>
-      ))}
-
-      <div className="sil-moon" style={{right:compact?18:34,top:compact?16:26,width:compact?48:70,height:compact?48:70}}/>
-      <div style={{position:"absolute",left:18,top:16,zIndex:4,padding:".48rem .7rem",borderRadius:999,
-        background:"rgba(8,4,15,.42)",border:"1px solid rgba(255,220,160,.18)",}}>
-        <p className="f-body" style={{color:"rgba(255,241,194,.86)",fontSize:".62rem",fontWeight:900,letterSpacing:".18em",textTransform:"uppercase"}}>Private Birthday Edition</p>
+      <div style={{
+        position:"absolute",
+        left:18,
+        top:16,
+        zIndex:6,
+        padding:".48rem .7rem",
+        borderRadius:999,
+        background:"rgba(8,4,15,.46)",
+        border:"1px solid rgba(255,220,160,.20)",
+        backdropFilter:"blur(6px)",
+        WebkitBackdropFilter:"blur(6px)"
+      }}>
+        <p className="f-body" style={{
+          color:"rgba(255,241,194,.90)",
+          fontSize:".62rem",
+          fontWeight:900,
+          letterSpacing:".18em",
+          textTransform:"uppercase"
+        }}>Private Birthday Edition</p>
       </div>
 
-      <svg viewBox="0 0 420 270" style={{position:"absolute",bottom:0,left:"50%",transform:"translateX(-50%)",width:compact?"92%":"86%",height:"auto",zIndex:2,filter:"drop-shadow(0 18px 28px rgba(0,0,0,.75))"}}>
-        <defs>
-          <linearGradient id="dressGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#f07090" stopOpacity=".70"/>
-            <stop offset=".55" stopColor="#6b1028" stopOpacity=".95"/>
-            <stop offset="1" stopColor="#1b0310"/>
-          </linearGradient>
-          <linearGradient id="suitGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#151019"/>
-            <stop offset="1" stopColor="#030108"/>
-          </linearGradient>
-          <radialGradient id="glow" cx="50%" cy="42%" r="60%">
-            <stop offset="0" stopColor="#fff3c7" stopOpacity=".28"/>
-            <stop offset="1" stopColor="#fff3c7" stopOpacity="0"/>
-          </radialGradient>
-        </defs>
-
-        <ellipse cx="210" cy="152" rx="145" ry="86" fill="url(#glow)"/>
-        <path d="M35 241 C95 217 155 222 205 234 C256 247 313 218 386 240 L386 270 L35 270Z" fill="rgba(4,1,10,.96)"/>
-        <path d="M76 226 C145 202 271 202 344 226" stroke="rgba(255,220,160,.18)" strokeWidth="2" fill="none"/>
-
-        {/* floral arch */}
-        <path d="M95 225 C91 126 129 70 199 56 C282 40 337 105 329 224" stroke="rgba(255,220,160,.20)" strokeWidth="5" fill="none" strokeLinecap="round"/>
-        {[0,1,2,3,4,5,6,7].map((_,i)=>(
-          <g key={i} transform={`translate(${104+i*31} ${99 - Math.sin(i)*31})`}>
-            <circle r="6" fill="rgba(240,112,144,.72)"/>
-            <circle cx="6" cy="3" r="4" fill="rgba(232,201,122,.65)"/>
-          </g>
-        ))}
-
-        {/* Him */}
-        <ellipse cx="180" cy="101" rx="18" ry="20" fill="#030108"/>
-        <path d="M158 125 Q180 114 203 125 L211 203 L148 203Z" fill="url(#suitGrad)"/>
-        <path d="M167 128 L181 152 L195 128" stroke="rgba(255,240,210,.18)" strokeWidth="3" fill="none"/>
-        <path d="M181 126 L175 151 L182 146 L190 151Z" fill="rgba(212,83,107,.75)"/>
-        <path d="M156 139 Q129 164 122 196" stroke="#030108" strokeWidth="16" strokeLinecap="round" fill="none"/>
-
-        {/* Her */}
-        <ellipse cx="235" cy="104" rx="17" ry="19" fill="#030108"/>
-        <path d="M218 101 Q235 78 255 101 Q251 83 236 78 Q222 82 218 101Z" fill="#030108"/>
-        <path d="M213 128 Q236 114 258 128 Q250 176 268 212 Q235 224 202 212 Q219 176 213 128Z" fill="url(#dressGrad)"/>
-        <path d="M255 140 Q286 162 292 196" stroke="#030108" strokeWidth="15" strokeLinecap="round" fill="none"/>
-
-        {/* Joined hands */}
-        <path d="M203 160 Q220 148 236 160" stroke="#030108" strokeWidth="13" strokeLinecap="round" fill="none"/>
-        <circle cx="219" cy="155" r="5" fill="rgba(232,201,122,.75)"/>
-
-        {/* Gift + roses */}
-        <rect x="302" y="206" width="34" height="26" rx="4" fill="rgba(212,83,107,.78)"/>
-        <path d="M319 206 L319 232 M302 218 L336 218" stroke="rgba(255,241,194,.82)" strokeWidth="3"/>
-        <path d="M310 204 C305 194 317 194 319 205 C322 194 334 195 328 204" fill="rgba(255,241,194,.72)"/>
-        <text x="210" y="67" textAnchor="middle" fontSize="24" fill="rgba(240,112,144,.92)" style={{filter:"drop-shadow(0 0 10px rgba(240,112,144,.8))"}}>❤</text>
-        <text x="240" y="51" textAnchor="middle" fontSize="13" fill="rgba(255,241,194,.75)">✦</text>
-        <text x="168" y="59" textAnchor="middle" fontSize="11" fill="rgba(255,241,194,.55)">✦</text>
-      </svg>
-
-      <div style={{position:"absolute",inset:"auto 0 0",height:110,background:"linear-gradient(0deg,rgba(4,1,10,.92),rgba(4,1,10,.35),transparent)",zIndex:1}}/>
-      {!compact&&<div style={{position:"absolute",left:22,right:22,bottom:18,zIndex:4,textAlign:"center"}}>
-        <p className="f-script" style={{color:"rgba(255,241,194,.86)",fontSize:"1.2rem",lineHeight:1.35}}>A wish wrapped in respect, care and a little romance</p>
+      <div style={{
+        position:"absolute",
+        inset:"auto 0 0",
+        height:compact?70:110,
+        background:"linear-gradient(0deg,rgba(4,1,10,.82),rgba(4,1,10,.28),transparent)",
+        zIndex:2,
+        pointerEvents:"none"
+      }}/>
+      {!compact&&<div style={{position:"absolute",left:22,right:22,bottom:18,zIndex:6,textAlign:"center"}}>
+        <p className="f-script" style={{color:"rgba(255,241,194,.88)",fontSize:"1.2rem",lineHeight:1.35}}>A wish wrapped in respect, care and a little romance</p>
       </div>}
     </div>
   );
 }
+
 
 /* ═══════════════════════════════════════════════════════════════
    TYPEWRITER
@@ -1050,7 +1128,7 @@ function HeartGameStep({onNext,onBack}) {
     const pool=["❤️","💖","🌹","💝","✨","🤍"];
     const e=pool[Math.floor(Math.random()*pool.length)];
     const secret=CONFIG.heartGameSecrets[Math.floor(Math.random()*CONFIG.heartGameSecrets.length)];
-    setHearts(h=>[...h.slice(-7),{id,e,secret,x:8+Math.random()*84,y:15+Math.random()*68}]);
+    setHearts(h=>[...h.slice(-7),{id,e,secret,x:14+Math.random()*72,y:24+Math.random()*58}]);
   },[]);
 
   const start=()=>{
@@ -1083,14 +1161,14 @@ function HeartGameStep({onNext,onBack}) {
   useEffect(()=>()=>{clearInterval(ivRef.current);clearTimeout(toRef.current);},[]);
 
   return (
-    <Card wide>
+    <Card wide className="heart-screen">
       <EmojiRain active={rain} emojis={["❤️","💖","🌹","✨","🤍"]} count={16}/>
       <SectionHead kicker="🎮 Special Heart Game — Unlock Her Smile"
         title={<>Collect <span className="rose-shine">Dil Wale Hearts</span></>}
         sub="Har heart ke andar ek choti si feeling hidden hai. 10 hearts collect karo aur final birthday note unlock ho jayega — bilkul special edition."/>
 
-      <div style={{display:"grid",gridTemplateColumns:"minmax(0,1.4fr) minmax(240px,.6fr)",gap:14,alignItems:"stretch"}}>
-        <div style={{position:"relative",borderRadius:26,overflow:"hidden",
+      <div className="heart-game-layout" style={{display:"grid",gridTemplateColumns:"minmax(0,1.4fr) minmax(240px,.6fr)",gap:14,alignItems:"stretch"}}>
+        <div className="heart-arena" style={{position:"relative",borderRadius:26,overflow:"hidden",
           background:"radial-gradient(circle at 50% 24%,rgba(240,112,144,.18),transparent 32%), linear-gradient(145deg,rgba(30,5,15,.92),rgba(8,2,8,.98))",
           border:"1px solid rgba(255,220,160,.18)",height:380,
           boxShadow:"0 24px 75px rgba(0,0,0,.62), inset 0 0 70px rgba(107,16,40,.18)"}}>
@@ -1103,10 +1181,10 @@ function HeartGameStep({onNext,onBack}) {
               background:"radial-gradient(circle,rgba(240,112,144,.12),transparent 70%)"}}/>
 
           {!started&&(
-            <div style={{position:"absolute",inset:0,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:16,textAlign:"center",padding:24}}>
+            <div className="heart-arena-start" style={{position:"absolute",inset:0,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:16,textAlign:"center",padding:24}}>
               <motion.div animate={{scale:[1,1.16,1],rotate:[0,7,-7,0]}} transition={{duration:2.2,repeat:Infinity}}
-                style={{fontSize:"5rem",filter:"drop-shadow(0 0 28px rgba(240,112,144,.9))"}}>💝</motion.div>
-              <div className="f-display gold-shine" style={{fontSize:"clamp(1.8rem,4vw,3rem)",fontWeight:700,lineHeight:1}}>Fariha Smile Mission</div>
+                className="heart-start-icon" style={{fontSize:"5rem",filter:"drop-shadow(0 0 28px rgba(240,112,144,.9))"}}>💝</motion.div>
+              <div className="f-display gold-shine heart-start-title" style={{fontSize:"clamp(1.8rem,4vw,3rem)",fontWeight:700,lineHeight:1}}>Fariha Smile Mission</div>
               <p className="copy" style={{maxWidth:480}}>Dil wale hearts collect karo. Har click ek hidden line reveal karega — thori cute, thori caring, poori dil se.</p>
               <Btn onClick={start}>Start Mission →</Btn>
             </div>
@@ -1127,11 +1205,11 @@ function HeartGameStep({onNext,onBack}) {
           </AnimatePresence>
 
           {started&&(
-            <div style={{position:"absolute",top:12,left:12,right:12,display:"flex",justifyContent:"space-between",gap:10,alignItems:"center",zIndex:4}}>
-              <div style={{background:"rgba(10,2,8,.82)",border:"1px solid rgba(255,220,160,.18)",borderRadius:999,padding:".42rem .85rem",}}>
+            <div className="heart-progress-row" style={{position:"absolute",top:12,left:12,right:12,display:"flex",justifyContent:"space-between",gap:10,alignItems:"center",zIndex:4}}>
+              <div className="heart-count-pill" style={{background:"rgba(10,2,8,.82)",border:"1px solid rgba(255,220,160,.18)",borderRadius:999,padding:".42rem .85rem",}}>
                 <p className="f-body" style={{fontSize:".78rem",fontWeight:900,color:"var(--gold2)",letterSpacing:".08em"}}>HEARTS {caught}/{target}</p>
               </div>
-              <div style={{flex:1,height:8,borderRadius:999,background:"rgba(255,240,210,.10)",overflow:"hidden",maxWidth:260}}>
+              <div className="heart-progress-bar" style={{flex:1,height:8,borderRadius:999,background:"rgba(255,240,210,.10)",overflow:"hidden",maxWidth:260}}>
                 <motion.div animate={{width:`${Math.min(100,(caught/target)*100)}%`}} style={{height:"100%",borderRadius:999,background:"linear-gradient(90deg,var(--rose),var(--gold2))",boxShadow:"0 0 14px rgba(240,112,144,.55)"}}/>
               </div>
             </div>
@@ -1156,16 +1234,16 @@ function HeartGameStep({onNext,onBack}) {
           </AnimatePresence>
         </div>
 
-        <div className="mini-card" style={{cursor:"default",minHeight:380,display:"flex",flexDirection:"column",justifyContent:"space-between",background:"linear-gradient(145deg,rgba(61,8,23,.55),rgba(255,240,210,.045))"}}>
+        <div className="mini-card heart-info-panel" style={{cursor:"default",minHeight:380,display:"flex",flexDirection:"column",justifyContent:"space-between",background:"linear-gradient(145deg,rgba(61,8,23,.55),rgba(255,240,210,.045))"}}>
           <div>
             <p className="f-body" style={{color:"var(--gold2)",fontSize:".67rem",fontWeight:900,letterSpacing:".16em",textTransform:"uppercase"}}>Unlocked Feelings</p>
-            <div className="f-display" style={{color:"var(--cream)",fontSize:"1.6rem",fontWeight:700,marginTop:8,lineHeight:1.05}}>Har heart me ek baat</div>
+            <div className="f-display heart-panel-title" style={{color:"var(--cream)",fontSize:"1.6rem",fontWeight:700,marginTop:8,lineHeight:1.05}}>Har heart me ek baat</div>
             <div style={{height:1,background:"linear-gradient(90deg,rgba(255,220,160,.30),transparent)",margin:"1rem 0"}}/>
-            <div style={{display:"grid",gap:10}}>
+            <div className="heart-unlock-list" style={{display:"grid",gap:10}}>
               {CONFIG.heartGameSecrets.map((s,i)=>{
                 const open=unlocked.some(u=>u.label===s.label) || done;
                 return (
-                  <motion.div key={s.label} animate={{opacity:open?1:.45,scale:open?1:.98}}
+                  <motion.div key={s.label} className="heart-secret-card" animate={{opacity:open?1:.45,scale:open?1:.98}}
                     style={{borderRadius:16,padding:".75rem .85rem",border:open?"1px solid rgba(201,168,76,.30)":"1px dashed rgba(255,220,160,.14)",background:open?"rgba(201,168,76,.08)":"rgba(255,240,210,.035)"}}>
                     <p className="f-body" style={{fontWeight:900,color:open?"var(--gold2)":"rgba(240,230,211,.48)",fontSize:".78rem"}}>{open?"💖":"🔒"} {s.label}</p>
                     <p className="copy" style={{fontSize:".82rem",lineHeight:1.55,marginTop:4,color:open?"var(--cream2)":"rgba(240,230,211,.38)"}}>{open?s.text:"Heart collect karo to ye line unlock hogi."}</p>
