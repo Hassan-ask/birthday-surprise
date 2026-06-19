@@ -506,82 +506,102 @@ const CONFIG = {
   herName: "Fariha",
   yourName: "Mohammad Hassan",
   password: "future",
-  passwordHint: "hamara rishta kis taraf ja raha hai 🙈",
+  passwordHint: "hamari woh manzil jahan dua, izzat, pyaar ho 🙈",
   musicUrl: "/music/romantic.mp3",
   personalLines: [
-    "Fariha, ye surprise sirf birthday wish nahi — meri taraf se ek chhota sa ehsaas hai ke aap meri nazar me kitni qeemti, graceful aur dil ke qareeb hain. ❤️",
-    "Aapse baat hoti hai to din ka normal sa moment bhi special feel hota hai. Aapka simple ‘G’, aapki soft vibe, aapka trust aur aapki smile — ye sab dil ko quietly attract kar leta hai. 🤍",
-    "Main perfect nahi hoon, lekin meri niyat sincere hai: agar Allah ne hume saath likha, to main aapko izzat, care, loyalty, sukoon aur thori si cute dramebazi ke saath khush rakhne ki koshish karunga. ✨",
+    "Fariha, aaj ka surprise meri taraf se ek digital gift nahi, meri mohabbat ka woh lifafa hai jisme care, respect, loyalty aur sirf aap ke liye likhi hui dhadkanein rakhi hain. ❤️",
+    "Aap se baat ho to lagta hai din ne apni awaaz halki kar li, waqt ne speed kam kar di, aur dil ne chupke se keh diya: is insan ko hamesha naram lafzon me sambhalna. 🤍",
+    "Main superhero nahi, lekin aap ke liye duaon ka guard, mood ka mechanic, smile ka supplier, aur husband-material ka full-time trainee ban kar ready hoon. ✨",
   ],
   futureWifeFeatures: [
-    { emoji:"😊", label:"Smile", title:"Smile Jo Dil Ka Scene Change Kar De", desc:"Aapki smile me wo softness hai jo normal baat ko bhi special bana deti hai. Banda sochta hai bas smile dekhi hai, lekin dil quietly bolta hai: Hassan bhai, ye to dangerous level cute hai." },
-    { emoji:"🌸", label:"Grace", title:"Haya + Class = Fariha", desc:"Aap loud nahi hotin, lekin aapki presence bohot beautifully feel hoti hai. Aapki haya, respectful tone aur simple nature woh cheez hai jo dil me shor ke bina jagah bana leti hai." },
-    { emoji:"🔐", label:"Trust", title:"Trust Jo Dil Se Sambhalna Hai", desc:"Aapne jo trust diya, wo mere liye sirf ek baat nahi — amanat hai. Aapki privacy, izzat aur comfort ko protect karna mere liye romance se bhi pehle aata hai." },
-    { emoji:"💬", label:"Connection", title:"Baat Jo Naturally Flow Hoti Hai", desc:"Aap kehti hain ke har kisi se itni baat nahi kartin. Sach kahun to main bhi har kisi ke sath itna open nahi hota. Shayad isi liye hamari baat me forced feeling nahi, bas natural comfort hai." },
-    { emoji:"🏡", label:"Future", title:"Future Wife Wali Peaceful Vibe", desc:"Aap me wo vibe hai jisse future fancy nahi, peaceful imagine hota hai — respect, sukoon, families ki dua, thori nok-jhok, aur menu me biryani ke sath meri fish fry ki request bhi." },
-    { emoji:"💎", label:"Value", title:"Qeemti Insan, Sirf Pasand Nahi", desc:"Aap mere liye sirf pretty face ya cute chat nahi hain. Aapki feelings, boundaries, smile aur sukoon matter karta hai — aur yehi baat aapko meri nazar me bohot qeemti banati hai." },
+    { emoji:"😊", label:"Muskurahat", title:"Woh Smile Jis Par Dil Ka Password Unlock Ho Jaye", desc:"Aapki muskurahat aisi hai ke banda serious rehne ka irada kare, phir bhi dil apni kursi se uth kar clap kar deta hai. Ye smile normal nahi, meri daily peace ki premium subscription hai." },
+    { emoji:"🌸", label:"Nazakat", title:"Haya Ki Khushboo Aur Adaab Ki Roshni", desc:"Aapki personality me shor nahi, lekin asar bohot gehra hai. Aapka tameez se bolna, nazakat se behave karna aur apni limits ko samajhna dil ko izzat se attract karta hai." },
+    { emoji:"🔐", label:"Amanat", title:"Trust Jise Main Dil Ke Locker Me Rakhta Hoon", desc:"Aapka bharosa mere liye koi casual cheez nahi; ye meri zimmedari ka sab se khoobsurat imtehan hai. Aapki baat, aapka comfort aur aapki privacy mere liye sacred zone hai." },
+    { emoji:"💬", label:"Baat", title:"Conversation Jo Seedha Rooh Tak Utar Jaye", desc:"Aap se guftagu me na banawat hoti hai, na thakan. Jaise har message ke baad dil ko ek choti si chai milti ho aur mood kehta ho: haan bhai, ab din behtar hai." },
+    { emoji:"🏡", label:"Ghar", title:"Future Jahan Mohabbat Bhi Ho Aur Sukoon Bhi", desc:"Aap ke saath kal ka tasavvur kisi noisy dream jaisa nahi, ek peaceful ghar jaisa lagta hai; duaon ki mehfil, families ki khushi, choti nok-jhok, aur meri taraf se emergency food diplomacy." },
+    { emoji:"💎", label:"Qeemat", title:"Aisi Qadar Jo Lafzon Se Aage Nikal Jaye", desc:"Aap mere liye sirf pasand ka naam nahi; aap woh insan hain jinki feelings ko samajhna, mood ko protect karna aur izzat ko priority dena mere dil ki khushi ban gaya hai." },
   ],
   whySpecial: [
-    { emoji:"💫", title:"Aapka Asar", text:"Kuch log life me excitement se zyada sukoon ban kar aate hain. Aapki baat, aapka tareeqa aur aapka ‘G’ bhi kabhi kabhi dil ko calm kar deta hai." },
-    { emoji:"❤️", title:"Dil Ko Comfortable Lagti Hain", text:"Aap se baat karte hue awkwardness nahi hoti; ek comfort feel hota hai. Jaise dil ko pata ho ke yahan izzat bhi hai, care bhi hai aur halka sa cute mazak bhi." },
-    { emoji:"🌙", title:"Time Ka Pata Nahi Chalta", text:"Aapse baat karte karte waqt ka pata hi nahi chalta. Ye normal chat nahi lagti — jaise din ka best part quietly phone screen par aa gaya ho." },
-    { emoji:"🤍", title:"Respect Wali Mohabbat", text:"Aapne trust aur respect ki value samjhi hai, aur mujhe ye baat bohot pasand hai. Mere liye bhi khoobsurat rishta wahi hota hai jahan mohabbat se pehle izzat ho." },
-    { emoji:"🌷", title:"Aapki Softness", text:"Aapki soft nature me ek alag attraction hai. Aap zyada show off nahi kartin, lekin jo sincerity aapki baaton me hoti hai, wo seedha dil tak pohanchti hai." },
-    { emoji:"😄", title:"Cute Funny Side", text:"Kabhi aap doctor sahiba ban kar chai/coffee par lecture deti hain, kabhi itni innocent baat kar deti hain ke smile aa jati hai. Ye serious + funny combo hi to dangerous hai." },
+    { emoji:"💫", title:"Dil Ka Sukoon", text:"Aapki presence me ajeeb si softness hai; jaise thaki hui soch ko bhi koi keh raha ho ke fikar mat karo, yahan pyaar bhi tameez se milta hai." },
+    { emoji:"❤️", title:"Safe Feeling", text:"Aap ke qareeb hone ka ehsaas dil ko secure karta hai; wahan judgement nahi hoti, bas samajh, ehtram aur ek meethi si closeness mehsoos hoti hai." },
+    { emoji:"🌙", title:"Waqt Ki Chori", text:"Aap se baat shuru ho to clock bhi thora corrupt ho jata hai; minutes chupke se hours ban jate hain aur mujhe complaint karne ka bilkul mann nahi karta." },
+    { emoji:"🤍", title:"Izzat Wali Mohabbat", text:"Mere liye real love wahi hai jahan pehle Allah ka khauf, phir families ki khushi, phir ek dusre ki dignity ka khayal rakha jaye." },
+    { emoji:"🌷", title:"Narmi Ka Jadoo", text:"Aapki nature me woh graceful calmness hai jo zabardasti impress nahi karti, bas dheere se dil ke darwaze par dastak de kar andar aa jati hai." },
+    { emoji:"😄", title:"Cute Drama Department", text:"Kabhi aap itni masoom serious ho jati hain ke mujhe lagta hai viva chal raha hai; phir ek choti si baat se hansi aa jaye to mera poora system reboot ho jata hai." },
   ],
   promises: [
-    { icon:"🛡️", text:"Main aapki izzat, haya aur privacy ka hamesha khayal rakhunga. Aapka trust mere paas amanat hai — aur amanat ko dil se sambhala jata hai." },
-    { icon:"🕊️", text:"Main aapko kabhi pressure feel nahi karwana chahta. Har step Allah ki raza, dono families ki khushi aur aapki comfort ke saath ho." },
-    { icon:"🤍", text:"Agar meri koi baat kabhi buri lage, aap mujhe bata sakti hain. Main ego nahi, understanding choose karna chahta hoon." },
-    { icon:"💌", text:"Main aapko sirf special days par nahi, normal routine me bhi valued feel karwana chahta hoon — kyunki real care daily choti choti baaton me hoti hai." },
-    { icon:"🌍", text:"InshaAllah future me jahan bhi le kar jaun, meri priority ye hogi ke aap safe, happy, respected aur genuinely loved feel karen." },
-    { icon:"😄", text:"Aur haan, agar kabhi mood off ho to pehle smile lane ki koshish karunga. Agar phir bhi na hui to biryani, pasta ya fish fry ka emergency plan ready rahega." },
+    { icon:"🛡️", text:"Main aapki self-respect ko apni feelings se bhi pehle rakhunga, kyunki jo mohabbat izzat na de woh sirf lafzon ka shor hoti hai." },
+    { icon:"🕊️", text:"Main chahunga har qadam halal niyat, dua, aapki raza aur dono gharon ki khushi ke saath uthe; jaldi se zyada barkat zaroori hai." },
+    { icon:"🤍", text:"Agar meri koi baat kabhi aapke dil ko chhoo kar dukh de, main defend karne se pehle samajhne ki koshish karunga." },
+    { icon:"💌", text:"Main aapko sirf birthday par princess feel nahi karwana chahta, routine ke random dinon me bhi aapko apni priority mehsoos karwana chahta hoon." },
+    { icon:"🌍", text:"Zindagi jahan bhi le jaye, meri koshish rahegi ke aap meri wajah se kabhi akeli, ignored ya unvalued feel na karen." },
+    { icon:"😄", text:"Mood off hua to pehle pyaar se poochunga, phir joke try karunga, phir food plan activate hoga; aur agar phir bhi smile na aaye to main khud meme ban jaunga." },
   ],
   birthdayPresents: [
-    { emoji:"🤲", title:"Dua Ka Present", text:"Allah aapko hamesha sehat, hifazat, sukoon, izzat aur wo khushiyan de jo aap dil me chup chap chahti hain. Ameen." },
-    { emoji:"🌹", title:"Respect Ka Present", text:"Aapki izzat meri priority rahegi — aaj bhi, kal bhi, aur inshaAllah hamesha. Ye gift kabhi expire nahi hoga." },
-    { emoji:"🔐", title:"Trust Ka Present", text:"Jo baat hum dono ke darmiyan ho, wo hum dono tak hi rahe. Aapka trust mere liye sab se special responsibility hai." },
-    { emoji:"💌", title:"Time Ka Present", text:"Busy routine ke bawajood aapke liye waqt nikalna mere liye duty nahi, dil ki khushi hogi." },
-    { emoji:"🌙", title:"Sukoon Ka Present", text:"Meri koshish ye rahegi ke aap mere saath kabhi unsafe, ignored ya unvalued feel na karen — sirf sukoon, respect aur care feel ho." },
-    { emoji:"🍝", title:"Cute Deal Present", text:"Aap pasta, main fish fry, dono biryani par agree. Chai/coffee par aapki doctor sahiba wali warning bhi maan lenge… lekin kabhi kabhi." },
+    { emoji:"🤲", title:"Dua Ka Tohfa", text:"Allah aapke naseeb me wo roshni likhe jo aankhon me chamak, dil me itminan aur zindagi me asani ban kar utare. Ameen." },
+    { emoji:"🌹", title:"Ehtram Ka Gulab", text:"Meri taraf se sab se pehla gift ye hai ke aapki dignity, choices aur boundaries ko hamesha serious value milegi." },
+    { emoji:"🔐", title:"Raazdari Ka Promise", text:"Jo baat aap bharose se share karen, us par meri zubaan ka lock aur dil ki hifazat dono lagay rahenge." },
+    { emoji:"💌", title:"Waqt Ka Voucher", text:"Busy schedule apni jagah, lekin aap ke liye waqt nikalna meri majboori nahi, meri favourite aadat ban sakti hai." },
+    { emoji:"🌙", title:"Sukoon Ki Chadar", text:"Meri tamanna hai ke mere saath aapko panic nahi, peace mile; sawal nahi, samajh mile; distance nahi, gentle closeness mile." },
+    { emoji:"🍝", title:"Food Treaty", text:"Aapki cravings ko national emergency declare kiya jayega, meri fish fry ko opposition ka haq milega, aur dessert par dono ki coalition government banegi." },
   ],
   heartGameSecrets: [
-    { label:"Smile", text:"Aapki smile meri favorite silent notification hai." },
-    { label:"Trust", text:"Aapka trust mere liye amanat hai." },
-    { label:"Sukoon", text:"Aapki baaton me ek peaceful comfort hai." },
-    { label:"Future", text:"Aapke saath future ka khayal soft aur beautiful lagta hai." },
-    { label:"Dua", text:"Allah hume behtareen faislay aur asaniyan de. Ameen." },
+    { label:"Roshan", text:"Aapki hansi andheray mood me fairy lights jaisi lagti hai." },
+    { label:"Aman", text:"Mujhe aapka bharosa jeetna nahi, roz nibhana hai." },
+    { label:"Qurbat", text:"Aapki baaton ka lehja dil ko ghar ki dehleez jaisa mehfooz lagta hai." },
+    { label:"Kal", text:"Aap ke saath future ka khayal plan se zyada dua ban kar aata hai." },
+    { label:"Ameen", text:"Allah hamare liye woh raasta kholay jisme izzat, asani aur dono families ki muskurahat ho." },
   ],
-  letter: `Pyaari Fariha,
+  letter: `Meri Pyaari Fariha,
 
-Happy 20th Birthday ❤️
+Happy 20th Birthday, meri dil ki sab se khoobsurat dua. ❤️
 
-Aaj ka din mere liye sirf calendar ki ek date nahi hai. Aaj us insan ka birthday hai jisse baat karte karte mujhe ye feel hua ke kuch log dil ko impress nahi, dil ko sukoon dene ke liye aate hain. Aap unhi logon me se hain.
+Aaj main sirf wish nahi kar raha; aaj main apne dil ka woh hissa aapke naam likh raha hoon jo shayad normal dinon me lafzon ke peeche chup jata hai. Aapki birthday mere liye ek date nahi, ek ehsaas hai ke duniya me ek aisi ladki bhi hai jiska naam aate hi mere andar ki sakhti pighal jati hai aur dil bohot narmi se muskura deta hai.
 
-Fariha, main chahta hoon ke ye wish aap sirf read na karen — feel bhi karen. Aapki simplicity, aapki haya, aapka respectful tareeqa, aapka soft sa nature aur aapki smile… ye sab mil kar aapko meri nazar me bohot different banata hai. Aap loud nahi hotin, lekin aapki presence dil me bohot quietly jagah bana leti hai.
+Fariha, aapki beauty sirf face ki baat nahi. Aapki asli khoobsurti aapki haya, aapki tameez, aapki soft voice, aapka respectful nature aur woh masoom sa andaaz hai jo kisi ko bhi overacting ke baghair deeply special feel kara de. Aap chalti phirti poetry nahi; aap woh page hain jise parh kar insan dua mangna seekh leta hai.
 
-Mujhe aapki wo baat bohot special lagti hai ke aap har kisi se itni baat nahi kartin. Shayad isi liye jab aap mujhse naturally baat karti hain, jab aap apni choti choti baatein share karti hain, jab aap simple sa ‘G’ bolti hain, to wo mere liye normal reply nahi rehta — wo ek sweet si feeling ban jata hai.
+Kabhi kabhi sochta hoon ke main aap se itna attach kyun feel karta hoon. Phir jawab bohot simple milta hai: aap me show off kam, sincerity zyada hai; aap me attitude kam, grace zyada hai; aap me noise kam, sukoon zyada hai. Aur shayad isi liye mera dil aapki taraf sirf attract nahi hota, aapki izzat karna bhi chahta hai.
 
-Aapne trust ki baat ki thi, privacy ki baat ki thi, aur mujhe wo baat dil se lagi. Main chahta hoon ke aap mere saath hamesha safe, respected aur valued feel karen. Jo baat hum dono ke darmiyan ho, wo hum dono tak hi rahe. Aapki izzat aur aapka comfort mere liye sirf words nahi, zimmedari hai.
+Aapki ek muskurahat meri poori planning kharab kar sakti hai. Main sochta hoon aaj mature banunga, thora composed rahunga, lekin phir aapki smile ka khayal aata hai aur mera inner gentleman bhi kehta hai: bhai, ye case emotional court me chala gaya hai. Sach kahun to aapki hansi meri favourite notification hai, bas uski ringtone seedha dil me bajti hai.
 
-Mere liye mohabbat ka matlab sirf pyari pyari lines nahi. Mohabbat ka matlab hai kisi ki baat sunna, uski feelings ko samajhna, uski boundaries ka khayal rakhna, uski family ki respect karna, aur uski smile ko protect karna. Agar Allah ne hume saath likha, to main isi tarah aapka saath nibhana chahta hoon — izzat ke saath, loyalty ke saath, aur bohot care ke saath.
+Meri mohabbat ka matlab sirf romantic lines nahi. Mere liye pyaar ka matlab hai aapki baat ghour se sunna, aapki thakan ko samajhna, aapke mood ki respect karna, aapki privacy ko protect karna, aur aapki aankhon me kabhi meri wajah se pareshani na aane dena. Main chahta hoon ke agar kabhi aap mera naam sochen to dil kahe: haan, is insan ke paas meri izzat safe hai.
 
-Aur haan, itna serious letter dekh kar ye mat sochna ke Hassan serious mode me permanently shift ho gaya. Aapki smile ka case abhi bhi pending hai, kyunki wo banda normal rehne hi nahi deti. Aur future me agar menu decide hua, to biryani aapki, pasta aapka, lekin fish fry ki ek choti si seat meri taraf se reserved rahegi. Chai/coffee par aapka doctor sahiba wala lecture bhi sun lenge — bas zyada strict mat hona.
+Main aapko chand sitaray tod kar dene ka jhoot nahi bolunga, kyunki mujhe electrician ka bhi itna experience nahi. Lekin main ye keh sakta hoon ke InshaAllah aapke liye har roz choti choti care jama karta rahunga; kabhi dua ki shakal me, kabhi message ki shakal me, kabhi samajhne ki shakal me, aur kabhi aisi silly baat ki shakal me jo aapko hasne par majboor kar de.
 
-Fariha, main koi filmy guarantee nahi de sakta, kyunki future Allah ke haath me hai. Lekin meri niyat simple aur sincere hai. Main chahta hoon ke aapko mere saath kabhi ye feel na ho ke aapki value kam hai. Aapki khushi, aapka sukoon, aapki smile aur aapka trust mere liye genuinely matter karta hai.
+Aap meri nazar me woh queen hain jinki crown gold ka nahi, dignity ka bana hua hai. Aapko impress karne se zyada main aapko secure feel karwana chahta hoon. Aapko chase karne se zyada main aapka trust deserve karna chahta hoon. Aapko sirf apna kehne se zyada main aapke liye apna character behtar banana chahta hoon.
 
-Is birthday par meri dua hai ke Allah aapke dil ko hamesha halka rakhe, aapki zindagi me asaniyan rakhe, aapko har buri nazar se mehfooz rakhe, aur aapko wo khushiyan de jo aap deserve karti hain. Aapki muskurahat hamesha real rahe, aapki aankhon me hamesha roshni rahe, aur aapka dil hamesha sukoon me rahe.
+Ek choti si shayari aap ke naam:
 
-Agar Allah ne behtari rakhi, to agle birthdays me main aapko aur zyada haq, aur zyada izzat, aur aur zyada mohabbat ke saath wish karunga. Aur inshaAllah ek din aapki birthday sirf wish nahi hogi — meri responsibility, meri dua aur meri khushi hogi.
+Teri muskurahat se meri subah me ujala hota hai,
+Tera naam aaye to dil ka lehja nirala hota hai,
+Main lafzon me chhupa loon jo mohabbat meri,
+Phir bhi har dua me tera hi hawala hota hai.
 
-Happy Birthday, Fariha. Aap bohot qeemti hain. Aap dil ke bohot qareeb hain. Aur ye baat main sirf impress karne ke liye nahi, dil se keh raha hoon.
+Aur ek aur, kyunki birthday hai aur Hassan ko thora dramatic hone ka legal permission mil gaya:
 
-With respect, care, dua, aur thori si cute dramebazi,
+Tum ho to baat me narmi, khayal me rang aata hai,
+Dil be-sabab bhi khush ho kar shukr ka geet gata hai,
+Main maangta hoon bas itni si barkat apni zindagi me,
+Jahan tumhara sukoon ho, wahin mera ghar ban jata hai.
+
+Fariha, future Allah ke haath me hai. Main hawa me mahal banane ke bajaye dua me raasta mangna pasand karta hoon. Meri niyat ye hai ke agar Allah ne hum dono ke liye behtari likhi ho, to har step izzat, halal asani, families ki razamandi aur khushi ke saath ho. Mujhe jaldi nahi, mujhe barkat chahiye. Mujhe drama nahi, mujhe sukoon wali mohabbat chahiye.
+
+Agar kabhi aap udaas hon, main sirf ye nahi kehna chahta ke smile karo. Main pehle ye poochna chahta hoon ke dil par bojh kis baat ka hai. Agar aap chup rehna chahen to main aapki khamoshi ko bhi respect karunga. Agar aap bolna chahen to main beech me apni unnecessary TED Talk nahi shuru karunga, Thora mushkil hoga, lekin aap ke liye main apni commentary volume low kar sakta hoon.
+
+Aur haan, birthday ke baad bhi ye na samajhna ke romance ka monthly package expire ho gaya. InshaAllah care renewal automatic rahegi, dua unlimited rahegi, loyalty lifetime plan me hogi, aur jokes kabhi kabhi itne bekaar honge ke aapko hasna hi padega. Warna main claim kar dunga ke meri comedy advanced level ki hai, samajhne me waqt lagta hai.
+
+Meri dua hai ke Allah aapki zindagi me woh log rakhe jo aapko samjhein, aapki qadar karen, aur aapki rooh ko halka rakhen. Allah aapko har buri nazar, har unnecessary tension aur har aisi cheez se mehfooz rakhe jo aapki smile kam kare. Aapka dil hamesha roshan rahe, aapki aankhon me umeed rahe, aur aapki zindagi me woh khushi aaye jo aap chup chap deserve karti hain.
+
+Aaj ke din main bas itna kehna chahta hoon: aap mere liye aam nahi hain. Aap woh naam hain jo dua me aaye to lafz khud adab se seedhe ho jate hain. Aap woh feeling hain jo dil ko caring bana deti hai. Aap woh insan hain jiske liye main better, softer, more responsible aur zyada sincere banna chahta hoon.
+
+Happy Birthday, meri pyaari Fariha. Aapki har saal-girah par Allah aapko aur zyada izzat, sehat, khushi, noor aur sukoon ata kare. Aur agar Allah ne chaha, to ek din main aapko sirf message me nahi, haq se, izzat se, aur zindagi bhar wali zimmedari ke saath birthday wish karunga.
+
+Hamesha respect, care, dua, mohabbat aur thori si hasi mazak ke saath,
 Mohammad Hassan 💌`,
-  hiddenSecret: "Sach bataun? Aapka simple ‘G’ bhi kabhi kabhi dil ka favorite notification lagta hai ❤️",
+  hiddenSecret: "Confession time: aapki smile mere dil ka screenshot le leti hai, aur phir main poora din normal behave karne ki acting karta rehta hoon. ❤️",
   finalMessage: `Happy 20th Birthday, Fariha ❤️
-Aapki smile hamesha real rahe, aapka dil hamesha sukoon me rahe.
-Dua hai ke agle birthdays me main aapko aur zyada haq, izzat aur mohabbat ke saath wish karun. Ameen 🤍`,
+Allah aapki zindagi me noor, dil me sukoon, chehre par asli muskurahat aur qismat me behtareen faislay likhe.
+Meri dua hai ke agar hum ek dusre ke liye behtar hain, to Allah hamare darmiyan izzat, halal asani, families ki khushi aur mohabbat ki barkat rakh de. Ameen 🤍`,
 };
 
 const STEPS = ["Welcome","Qualities","Special","Game","Promises","Presents","Letter","Finale"];
@@ -747,7 +767,7 @@ function Silhouette({compact=false}) {
           fontWeight:900,
           letterSpacing:".18em",
           textTransform:"uppercase"
-        }}>Private Birthday Edition</p>
+        }}>Private Birthday Love Story</p>
       </div>
 
       <div style={{
@@ -759,7 +779,7 @@ function Silhouette({compact=false}) {
         pointerEvents:"none"
       }}/>
       {!compact&&<div style={{position:"absolute",left:22,right:22,bottom:18,zIndex:6,textAlign:"center"}}>
-        <p className="f-script" style={{color:"rgba(255,241,194,.88)",fontSize:"1.2rem",lineHeight:1.35}}>A wish wrapped in respect, care and a little romance</p>
+        <p className="f-script" style={{color:"rgba(255,241,194,.88)",fontSize:"1.2rem",lineHeight:1.35}}>A promise wrapped in respect, dua and husband-level care</p>
       </div>}
     </div>
   );
@@ -868,33 +888,35 @@ function ProgressHeader({step,total,musicOn,onToggleMusic}) {
 function HiddenButton() {
   const [open,setOpen]=useState(false);
   const [rain,setRain]=useState(false);
-  const hideRef=useRef(null);
+  const popupRef=useRef(null);
   const rainRef=useRef(null);
 
   const close=()=>{
     setOpen(false);
-    clearTimeout(hideRef.current);
+    clearTimeout(popupRef.current);
   };
 
   const click=()=>{
     setOpen(true);
     setRain(true);
 
-    clearTimeout(hideRef.current);
+    clearTimeout(popupRef.current);
     clearTimeout(rainRef.current);
 
-    rainRef.current=setTimeout(()=>setRain(false),2800);
-    hideRef.current=setTimeout(()=>setOpen(false),4000); // 4 seconds baad message hide ho jayega
+    rainRef.current=setTimeout(()=>setRain(false),2500);
+
+    // Button dobara show hote hi popup message khud chala jayega
+    popupRef.current=setTimeout(()=>setOpen(false),4200);
   };
 
   useEffect(()=>()=> {
-    clearTimeout(hideRef.current);
+    clearTimeout(popupRef.current);
     clearTimeout(rainRef.current);
   },[]);
 
   return (
     <>
-      <EmojiRain active={rain} emojis={["❤️","🌹","✨","💖"]} count={12}/>
+      <EmojiRain active={rain} emojis={["😂","❤️","✨","🙈"]} count={12}/>
       <div className="hidden-btn-wrap">
         <AnimatePresence mode="wait">
           {!open
@@ -907,22 +929,68 @@ function HiddenButton() {
                   rotate:{duration:3,repeat:Infinity,repeatDelay:2}
                 }}
                 style={{minHeight:36,padding:".48rem .85rem",fontSize:".76rem"}}>
-                Do Not Click 😄
+                Secret Smile Button 😄
               </motion.button>
-            : <motion.div key="hidden-msg" initial={{opacity:0,y:14,scale:.88,rotate:-4}} animate={{opacity:1,y:0,scale:1,rotate:0}}
-                exit={{opacity:0,y:14,scale:.88,rotate:4}}
+            : <motion.div key="funny-popup"
+                initial={{opacity:0,y:18,scale:.86,rotate:-3}}
+                animate={{opacity:1,y:0,scale:1,rotate:0}}
+                exit={{opacity:0,y:12,scale:.9,rotate:3}}
                 transition={{type:"spring",stiffness:280,damping:18}}
-                className="card" style={{maxWidth:230,padding:"1rem",borderRadius:18}}>
-                <div className="card-inner" style={{position:"relative",paddingTop:6}}>
-                  <button type="button" onClick={close}
-                    aria-label="Close hidden message"
-                    style={{position:"absolute",top:-8,right:-8,width:24,height:24,borderRadius:"50%",
-                      border:"1px solid rgba(255,220,160,.22)",background:"rgba(8,4,15,.75)",
-                      color:"var(--gold2)",cursor:"pointer",fontWeight:800,lineHeight:1}}>
-                    ×
-                  </button>
-                  <p className="f-script" style={{color:"var(--cream)",fontSize:"1.18rem",lineHeight:1.5}}>{CONFIG.hiddenSecret}</p>
-                </div>
+                style={{
+                  width:"min(270px, calc(100vw - 32px))",
+                  borderRadius:20,
+                  padding:"1rem 1.05rem",
+                  background:"linear-gradient(145deg, rgba(61,8,23,.96), rgba(12,3,10,.96))",
+                  border:"1px solid rgba(255,220,160,.24)",
+                  boxShadow:"0 18px 55px rgba(0,0,0,.55), 0 0 35px rgba(212,83,107,.22)",
+                  position:"relative",
+                  overflow:"hidden",
+                  backdropFilter:"blur(12px)"
+                }}>
+                <button type="button" onClick={close}
+                  aria-label="Close popup"
+                  style={{
+                    position:"absolute",top:8,right:8,width:24,height:24,borderRadius:"50%",
+                    border:"1px solid rgba(255,220,160,.22)",
+                    background:"rgba(8,4,15,.76)",
+                    color:"var(--gold2)",
+                    cursor:"pointer",
+                    fontWeight:800,
+                    lineHeight:1
+                  }}>
+                  ×
+                </button>
+
+                <p className="f-body" style={{
+                  color:"var(--gold2)",
+                  fontSize:".62rem",
+                  fontWeight:900,
+                  letterSpacing:".16em",
+                  textTransform:"uppercase",
+                  marginBottom:".45rem",
+                  paddingRight:26
+                }}>
+                  Secret Alert 🙈
+                </p>
+
+                <p className="f-script" style={{
+                  color:"var(--cream)",
+                  fontSize:"1.18rem",
+                  lineHeight:1.45,
+                  margin:0,
+                  paddingRight:8
+                }}>
+                  Acha ji, secret khul gaya… ab smile dena compulsory hai 😄❤️
+                </p>
+
+                <p className="f-body" style={{
+                  color:"rgba(240,230,211,.62)",
+                  fontSize:".76rem",
+                  lineHeight:1.55,
+                  marginTop:".55rem"
+                }}>
+                  Fariha, ab muskurana lazmi hai — warna ye button mujhe report kar dega ke husband material slow chal raha hai.
+                </p>
               </motion.div>
           }
         </AnimatePresence>
@@ -930,6 +998,7 @@ function HiddenButton() {
     </>
   );
 }
+
 
 /* ═══════════════════════════════════════════════════════════════
    SCREEN: PASSWORD
@@ -942,7 +1011,7 @@ function PasswordScreen({onUnlock}) {
     e.preventDefault();
     if(val.trim().toLowerCase()===CONFIG.password.toLowerCase()){onUnlock();return;}
     setShake(true); setTimeout(()=>setShake(false),500);
-    setErr("Password thora sa galat hai... hint dobara dekho 😅❤️");
+    setErr("Password thora sa sharma gaya hai... hint dobara dekho 😅❤️");
   };
   return (
     <Card narrow>
@@ -954,7 +1023,7 @@ function PasswordScreen({onUnlock}) {
               boxShadow:"0 22px 60px rgba(212,83,107,.35), inset 0 1px 0 rgba(255,255,255,.2)"}}>🔐</motion.div>
         </TiltCard>
 
-        <Kicker>Private Premiere · Sirf Apke Liye</Kicker>
+        <Kicker>Private Premiere · Sirf Aapke Liye</Kicker>
 
         <motion.div initial={{opacity:0,y:18}} animate={{opacity:1,y:0}} transition={{delay:.08}}>
           <div className="title-xl" style={{marginTop:".9rem",lineHeight:.9}}>
@@ -964,7 +1033,7 @@ function PasswordScreen({onUnlock}) {
 
         <motion.p className="copy" initial={{opacity:0}} animate={{opacity:1}} transition={{delay:.16}}
           style={{maxWidth:460,margin:"1rem auto 0"}}>
-          Ye cinematic birthday experience sirf apke liye hai. Password dalo aur apni special film shuru karo.
+          Ye cinematic birthday experience sirf aapke liye hai. Password dalo aur apni dil wali special film shuru karo.
         </motion.p>
 
         <motion.div initial={{opacity:0,y:10}} animate={{opacity:1,y:0}} transition={{delay:.22}}
@@ -976,7 +1045,7 @@ function PasswordScreen({onUnlock}) {
         <motion.form onSubmit={submit} initial={{opacity:0,y:10}} animate={{opacity:1,y:0}} transition={{delay:.28}}
           style={{margin:"1.3rem auto 0",maxWidth:460}}>
           <motion.div animate={shake?{x:[-10,10,-8,8,-4,4,0]}:{}} transition={{duration:.4}}>
-            <input value={val} onChange={e=>setVal(e.target.value)} placeholder="Password yahaan…"
+            <input value={val} onChange={e=>setVal(e.target.value)} placeholder="Password yahaan likhein…"
               autoComplete="off" className="f-body"
               style={{width:"100%",background:"rgba(255,240,210,.06)",border:"1px solid rgba(255,220,160,.18)",
                 borderRadius:12,padding:"1rem 1.2rem",color:"var(--cream)",textAlign:"center",
@@ -991,7 +1060,7 @@ function PasswordScreen({onUnlock}) {
               className="f-body" style={{marginTop:".6rem",color:"var(--rose2)",fontSize:".86rem",fontWeight:700}}>{err}</motion.p>}
           </AnimatePresence>
           <Btn type="submit" style={{marginTop:"1rem",width:"100%",padding:".9rem",fontSize:".96rem"}}>
-            ✦ Unlock Surprise ✦
+            ✦ Unlock Dil Wala Surprise ✦
           </Btn>
         </motion.form>
 
@@ -1012,16 +1081,16 @@ function EntryStep({onNext}) {
     <Card wide>
       <div className="grid-2">
         <motion.div variants={staggerVar} initial="hidden" animate="show">
-          <motion.div variants={fadeUpVar}><Kicker>🎂 Birthday Surprise · Dil Se · 2026</Kicker></motion.div>
+          <motion.div variants={fadeUpVar}><Kicker>🎂 Birthday Surprise · Husband-Material Edition · 2026</Kicker></motion.div>
           <motion.div variants={fadeUpVar} className="title-xl" style={{marginTop:".9rem",lineHeight:.88}}>
             Happy<br/>Birthday,<br/><span className="rose-shine">{CONFIG.herName}</span>
           </motion.div>
           <motion.p variants={fadeUpVar} className="copy" style={{marginTop:"1.1rem",maxWidth:520}}>
-            Ye sirf birthday website nahi — ye meri taraf se aapke liye ek romantic, respectful aur dil se bana hua surprise hai: dua, care, smile mission, thori comedy aur bohot sincere feelings.
+            Ye sirf birthday website nahi — ye meri taraf se aapke liye ek romantic, respectful aur dil se bana hua surprise hai: dua, care, loyalty, smile mission, thori comedy aur bohot sincere feelings.
           </motion.p>
           <motion.div variants={fadeUpVar} style={{marginTop:"1.6rem",display:"flex",gap:12,flexWrap:"wrap"}}>
-            <Btn onClick={onNext}>Start The Film →</Btn>
-            <Btn variant="secondary">Made with dil, dua & care 💌</Btn>
+            <Btn onClick={onNext}>Start Our Cute Film →</Btn>
+            <Btn variant="secondary">Made with dil, dua, loyalty & care 💌</Btn>
           </motion.div>
           <motion.div variants={fadeUpVar} style={{marginTop:"1.5rem",paddingTop:"1.3rem",borderTop:"1px solid rgba(255,220,160,.13)"}}>
             <Typewriter lines={CONFIG.personalLines}/>
@@ -1052,9 +1121,9 @@ function FeaturesStep({onNext,onBack}) {
   const [revealed,setRevealed]=useState({});
   return (
     <Card wide>
-      <SectionHead kicker="🌸 Dil Jeetne Wali File"
+      <SectionHead kicker="🌸 Dil Sambhalne Wali File"
         title={<><span className="gold-shine">Aapki</span> Dil Jeetne Wali Qualities</>}
-        sub="Har card ek alag reason hai ke aap meri nazar me sirf achi nahi, genuinely special aur attractive hain."/>
+        sub="Har card ek alag reason hai ke aap meri nazar me sirf achi nahi, genuinely special, graceful aur future-wife material hain."/>
       <motion.div variants={staggerVar} initial="hidden" animate="show" className="grid-cards">
         {CONFIG.futureWifeFeatures.map((item,i)=>{
           const open=!!revealed[i];
@@ -1065,7 +1134,7 @@ function FeaturesStep({onNext,onBack}) {
               style={{minHeight:220,textAlign:"left",color:"var(--cream)"}}>
               <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
                 <p className="f-body" style={{color:"var(--gold2)",fontSize:".64rem",letterSpacing:".16em",fontWeight:800,textTransform:"uppercase"}}>{item.label}</p>
-                {!open&&<span style={{color:"rgba(240,230,211,.3)",fontSize:".72rem",fontWeight:600}}>tap to reveal</span>}
+                {!open&&<span style={{color:"rgba(240,230,211,.3)",fontSize:".72rem",fontWeight:600}}>tap to feel</span>}
               </div>
               <div style={{fontSize:"2.8rem",margin:".9rem 0",filter:"drop-shadow(0 8px 18px rgba(212,83,107,.4))"}}>{item.emoji}</div>
               {!open
@@ -1092,7 +1161,7 @@ function WhySpecialStep({onNext,onBack}) {
     <Card wide>
       <SectionHead kicker="❤️ Dil Ka Reason"
         title={<>Why You <span className="rose-shine">Matter</span></>}
-        sub="Kuch log sirf pasand nahi aate, dil ko comfortable aur close lagne lagte hain. Ye section usi feeling ke naam."/>
+        sub="Kuch log sirf pasand nahi aate, dil ko comfortable, safe aur close lagne lagte hain. Ye section usi respectful feeling ke naam."/>
       <motion.div variants={staggerVar} initial="hidden" animate="show" className="grid-cards">
         {CONFIG.whySpecial.map((item,i)=>(
           <motion.div key={item.title} variants={fadeUpVar} className="mini-card">
@@ -1185,7 +1254,7 @@ function HeartGameStep({onNext,onBack}) {
               <motion.div animate={{scale:[1,1.16,1],rotate:[0,7,-7,0]}} transition={{duration:2.2,repeat:Infinity}}
                 className="heart-start-icon" style={{fontSize:"5rem",filter:"drop-shadow(0 0 28px rgba(240,112,144,.9))"}}>💝</motion.div>
               <div className="f-display gold-shine heart-start-title" style={{fontSize:"clamp(1.8rem,4vw,3rem)",fontWeight:700,lineHeight:1}}>Fariha Smile Mission</div>
-              <p className="copy" style={{maxWidth:480}}>Dil wale hearts collect karo. Har click ek hidden line reveal karega — thori cute, thori caring, poori dil se.</p>
+              <p className="copy" style={{maxWidth:480}}>Dil wale hearts collect karo. Har click ek hidden line reveal karega — thori cute, thori caring, aur full husband-material energy ke saath.</p>
               <Btn onClick={start}>Start Mission →</Btn>
             </div>
           )}
@@ -1223,8 +1292,8 @@ function HeartGameStep({onNext,onBack}) {
                   textAlign:"center",padding:"2rem",zIndex:6}}>
                 <motion.div initial={{scale:0}} animate={{scale:1}} transition={{type:"spring",stiffness:260,damping:18}}
                   style={{fontSize:"4rem",marginBottom:".8rem",filter:"drop-shadow(0 0 24px rgba(240,112,144,.9))"}}>🎉</motion.div>
-                <div className="f-display rose-shine" style={{fontSize:"clamp(2rem,5vw,3.4rem)",fontWeight:700,lineHeight:1}}>Mission Complete!</div>
-                <p className="copy f-body" style={{marginTop:".75rem",maxWidth:560}}>Aapne {caught} hearts collect kiye — lekin sach ye hai ke dil to pehle hi aapki respectful smile aur soft vibe se impress ho chuka tha. ❤️</p>
+                <div className="f-display rose-shine" style={{fontSize:"clamp(2rem,5vw,3.4rem)",fontWeight:700,lineHeight:1}}>Smile Mission Complete!</div>
+                <p className="copy f-body" style={{marginTop:".75rem",maxWidth:560}}>Aapne {caught} hearts collect kiye — lekin sach ye hai ke dil to pehle hi aapki respectful smile, soft nature aur decent vibe se impress ho chuka tha. ❤️</p>
                 <div style={{display:"flex",gap:10,flexWrap:"wrap",justifyContent:"center",marginTop:"1rem"}}>
                   <Btn variant="secondary" onClick={start}>Dobara Khelo 🔄</Btn>
                   <Btn onClick={onNext}>Promises Unlock →</Btn>
@@ -1236,8 +1305,8 @@ function HeartGameStep({onNext,onBack}) {
 
         <div className="mini-card heart-info-panel" style={{cursor:"default",minHeight:380,display:"flex",flexDirection:"column",justifyContent:"space-between",background:"linear-gradient(145deg,rgba(61,8,23,.55),rgba(255,240,210,.045))"}}>
           <div>
-            <p className="f-body" style={{color:"var(--gold2)",fontSize:".67rem",fontWeight:900,letterSpacing:".16em",textTransform:"uppercase"}}>Unlocked Feelings</p>
-            <div className="f-display heart-panel-title" style={{color:"var(--cream)",fontSize:"1.6rem",fontWeight:700,marginTop:8,lineHeight:1.05}}>Har heart me ek baat</div>
+            <p className="f-body" style={{color:"var(--gold2)",fontSize:".67rem",fontWeight:900,letterSpacing:".16em",textTransform:"uppercase"}}>Unlocked Dil Wali Feelings</p>
+            <div className="f-display heart-panel-title" style={{color:"var(--cream)",fontSize:"1.6rem",fontWeight:700,marginTop:8,lineHeight:1.05}}>Har heart me ek sincere baat</div>
             <div style={{height:1,background:"linear-gradient(90deg,rgba(255,220,160,.30),transparent)",margin:"1rem 0"}}/>
             <div className="heart-unlock-list" style={{display:"grid",gap:10}}>
               {CONFIG.heartGameSecrets.map((s,i)=>{
@@ -1246,13 +1315,13 @@ function HeartGameStep({onNext,onBack}) {
                   <motion.div key={s.label} className="heart-secret-card" animate={{opacity:open?1:.45,scale:open?1:.98}}
                     style={{borderRadius:16,padding:".75rem .85rem",border:open?"1px solid rgba(201,168,76,.30)":"1px dashed rgba(255,220,160,.14)",background:open?"rgba(201,168,76,.08)":"rgba(255,240,210,.035)"}}>
                     <p className="f-body" style={{fontWeight:900,color:open?"var(--gold2)":"rgba(240,230,211,.48)",fontSize:".78rem"}}>{open?"💖":"🔒"} {s.label}</p>
-                    <p className="copy" style={{fontSize:".82rem",lineHeight:1.55,marginTop:4,color:open?"var(--cream2)":"rgba(240,230,211,.38)"}}>{open?s.text:"Heart collect karo to ye line unlock hogi."}</p>
+                    <p className="copy" style={{fontSize:".82rem",lineHeight:1.55,marginTop:4,color:open?"var(--cream2)":"rgba(240,230,211,.38)"}}>{open?s.text:"Heart collect karo to ye sweet line unlock hogi."}</p>
                   </motion.div>
                 );
               })}
             </div>
           </div>
-          <p className="f-script" style={{color:"var(--gold2)",fontSize:"1.15rem",lineHeight:1.35,marginTop:"1rem"}}>Goal simple hai: smile unlock karni hai, pressure nahi. 😄</p>
+          <p className="f-script" style={{color:"var(--gold2)",fontSize:"1.15rem",lineHeight:1.35,marginTop:"1rem"}}>Goal simple hai: aapki smile unlock karni hai, pressure bilkul nahi. 😄</p>
         </div>
       </div>
       <NavRow onBack={onBack} onNext={onNext} nextLabel="Promises →"/>
@@ -1270,7 +1339,7 @@ function PromisesStep({onNext,onBack}) {
     <Card>
       <SectionHead kicker="🤍 Promises — Dil Se"
         title={<>My <span className="gold-shine">Promises</span></>}
-        sub="Ye filmy dialogues nahi — meri sincere niyat ka clear version hai: respect, trust, care, loyalty aur thora sa cute mazak."/>
+        sub="Ye filmy dialogues nahi — meri sincere niyat ka clear version hai: respect, trust, care, loyalty, protection aur thora sa cute mazak."/>
       <div className="grid-promises">
         {CONFIG.promises.map((p,i)=>{
           const done=!!checked[i];
@@ -1301,7 +1370,7 @@ function PromisesStep({onNext,onBack}) {
           {all&&(
             <motion.div initial={{opacity:0,y:14,scale:.94}} animate={{opacity:1,y:0,scale:1}} className="mini-card"
               style={{textAlign:"center",padding:".9rem",background:"rgba(201,168,76,.09)",borderColor:"rgba(201,168,76,.28)"}}>
-              <p className="f-script" style={{color:"var(--gold2)",fontSize:"1.25rem"}}>Sab promises confirm — ab zimmedari aur bhi sweet ho gayi 🤍</p>
+              <p className="f-script" style={{color:"var(--gold2)",fontSize:"1.25rem"}}>Sab promises confirm — ab husband-material responsibility aur bhi sweet ho gayi 🤍</p>
             </motion.div>
           )}
         </AnimatePresence>
@@ -1320,7 +1389,7 @@ function PresentsStep({onNext,onBack}) {
     <Card wide>
       <SectionHead kicker="🎁 Birthday Presents — Dil Se"
         title={<>Gifts For <span className="gold-shine">{CONFIG.herName}</span></>}
-        sub="Ye gifts wrapping paper wale nahi — dil wale presents hain: dua, respect, trust, time, sukoon aur ek cute food deal."/>
+        sub="Ye gifts wrapping paper wale nahi — dil wale presents hain: dua, respect, trust, time, sukoon, loyalty aur ek cute food deal."/>
       <motion.div variants={staggerVar} initial="hidden" animate="show" className="grid-cards">
         {CONFIG.birthdayPresents.map((gift,i)=>(
           <motion.div key={gift.title} variants={fadeUpVar} className="mini-card"
@@ -1350,9 +1419,9 @@ function PresentsStep({onNext,onBack}) {
 function LetterStep({onNext,onBack}) {
   return (
     <Card narrow>
-      <SectionHead kicker="💌 Main Scene — Love Letter"
+      <SectionHead kicker="💌 Main Scene — Dil Wala Letter"
         title={<><span className="gold-shine">Birthday</span> Letter</>}
-        sub="Ye letter aisa rakha hai ke har line alag feel de: respect bhi, romance bhi, future bhi, aur halka sa Hassan-style mazak bhi."/>
+        sub="Ye letter aisa rakha hai ke har line alag feel de: respect bhi, romance bhi, future bhi, care bhi, aur halka sa Hassan-style mazak bhi."/>
       <motion.div initial={{opacity:0,y:22,rotateX:-4}} animate={{opacity:1,y:0,rotateX:0}}
         transition={{delay:.12,duration:.55,ease:[.22,1,.36,1]}}
         style={{maxWidth:700,margin:"0 auto"}}>
@@ -1379,7 +1448,7 @@ function LetterStep({onNext,onBack}) {
 function FinalStep({onBack}) {
   const [yes,setYes]=useState(false);
   const [no,setNo]=useState(0);
-  const noTexts=["Nahi? 😅","Soch lo 😄","Dua me yaad rakhna ❤️","Ameen best hai 🥹","Ye button sirf drama hai 😌","Aik baar aur try karo 😄"];
+  const noTexts=["Nahi? impossible 😅","Soch lo, husband material ready hai 😄","Dua me yaad rakhna ❤️","Ameen best answer hai 🥹","Ye button sirf cute drama hai 😌","Aik baar aur smile ke saath try karo 😄"];
 
   return (
     <Card narrow>
@@ -1413,7 +1482,7 @@ function FinalStep({onBack}) {
           style={{margin:"1.4rem 0 0"}}>
           <div style={{height:1,background:"linear-gradient(90deg,transparent,rgba(201,168,76,.3),rgba(212,83,107,.2),transparent)",marginBottom:"1.4rem"}}/>
           <div className="f-display" style={{fontSize:"clamp(1.6rem,4vw,2.4rem)",fontWeight:700,color:"var(--cream)"}}>
-            Agle Saal Aur Zyada Haq Se? ❤️
+            Agle Saal Aur Zyada Haq, Izzat Aur Care Se? ❤️
           </div>
         </motion.div>
 
@@ -1451,7 +1520,7 @@ function FinalStep({onBack}) {
                 Aap Meri Duaon Me Hain ❤️
               </motion.div>
               <p className="copy f-body" style={{maxWidth:480,margin:".6rem auto 0"}}>
-                Ye birthday surprise complete hua, lekin meri dua yahin se shuru hoti hai: Allah hamare liye jo behtareen ho, usme asani, izzat, mohabbat aur khushi ata farmae. Ameen 🤍
+                Ye birthday surprise complete hua, lekin meri dua yahin se shuru hoti hai: Allah hamare liye jo behtareen ho, usme asani, izzat, families ki khushi, halal mohabbat aur sukoon ata farmae. Ameen 🤍
               </p>
               <div style={{display:"flex",justifyContent:"center",gap:"1rem",marginTop:"1.1rem"}}>
                 {["❤️","💌","🌹","✨","💍"].map((e,i)=>(
